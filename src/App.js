@@ -1,7 +1,10 @@
+import React from "react";
+import Pesquisa from "./components/Pesquisa/index";
+
 function App() {
   return (
     <div className="App">
-      <h2></h2>
+      <Pesquisa />
     </div>
   );
 }
