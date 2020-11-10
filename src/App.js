@@ -1,10 +1,13 @@
 import React from "react";
 import Pesquisa from "./components/Pesquisa/index";
+import PesquisaContextProvider from "./context/PesquisaContext";
 
 function App() {
   return (
     <div className="App">
-      <Pesquisa />
+      <PesquisaContextProvider>
+        <Pesquisa />
+      </PesquisaContextProvider>
     </div>
   );
 }

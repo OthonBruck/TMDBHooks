@@ -1,18 +1,28 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
+import api from "../services/api";
+import { endpoints } from "../services/endpoints";
 
 export const PesquisaContext = createContext();
 
 const initialState = [];
 
 export default function PesquisaContextProvider({ children }) {
-  function listarPesquisa() {
-    console.log("ODKSOKODSAKODS");
-    //tenho que fazer o resto
+  const [pesquisa, setPesquisa] = useState(initialState);
+  async function listarPesquisa(dado) {
+    try {
+      const response = await api.get(endpoints.searchMovie + dado);
+      console.log(response);
+      setPesquisa(response);
+      console.log(dado);
+    } catch (err) {
+      console.log("fufu");
+    }
   }
   return (
     <PesquisaContext.Provider
       value={{
         listarPesquisa,
+        pesquisa,
       }}
     >
       {children}
@@ -21,7 +31,7 @@ export default function PesquisaContextProvider({ children }) {
 }
 
 export function usePesquisaContext() {
-  const { listarPesquisa } = useContext(PesquisaContext);
+  const { listarPesquisa, pesquisa } = useContext(PesquisaContext);
 
-  return { listarPesquisa };
+  return { listarPesquisa, pesquisa };
 }
