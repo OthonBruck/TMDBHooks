@@ -6,9 +6,9 @@ export default function Index() {
 
   return (
     <div>
-      <ul className={classes.lista}>
+      <ul>
         {pesquisa.map((task, index) => (
-          <Resultado key={index} task={task} id={index} />
+          <h1>{task.vote_average}</h1>
         ))}
       </ul>
     </div>

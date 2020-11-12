@@ -1,14 +1,18 @@
 import Grid from "@material-ui/core/Grid";
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "./styles";
 import Button from "@material-ui/core/Button";
 import { useForm, FormProvider, Controller } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
 import { usePesquisaContext } from "../../context/PesquisaContext";
+import Radio from "@material-ui/core/Radio";
+
+const initialState = "pessoa";
 
 export default function Index() {
   const onSubmit = async (dado) => {
-    listarPesquisa(dado.pesquisa);
+    console.log(dado);
+    listarPesquisa(dado);
   };
 
   const classes = useStyles();
@@ -20,6 +24,11 @@ export default function Index() {
   const { handleSubmit } = methods;
 
   const { listarPesquisa } = usePesquisaContext();
+
+  const [selectedValue, setSelectedValue] = useState(initialState);
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   return (
     <div>
@@ -38,6 +47,32 @@ export default function Index() {
                 }
                 name="pesquisa"
                 defaultValue=""
+              />
+              <Controller
+                as={
+                  <div>
+                    <Radio
+                      checked={selectedValue === "pessoa"}
+                      onChange={handleChange}
+                      value="pessoa"
+                      name="radio-button-demo"
+                    />
+                    <Radio
+                      checked={selectedValue === "filme"}
+                      onChange={handleChange}
+                      value="filme"
+                      name="radio-button-demo"
+                    />
+                    <Radio
+                      checked={selectedValue === "serie"}
+                      onChange={handleChange}
+                      value="serie"
+                      name="radio-button-demo"
+                    />
+                  </div>
+                }
+                name="tipo"
+                defaultValue={selectedValue}
               />
               <Button variant="contained" color="primary" type="submit">
                 Primary
