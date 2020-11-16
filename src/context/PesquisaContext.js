@@ -12,9 +12,18 @@ export default function PesquisaContextProvider({ children }) {
 
   async function listarPesquisa(dado) {
     try {
-      const response = await api.get(endpoints.searchMovie + dado.pesquisa);
-      setPesquisa(response.data.results);
       setTipo(dado.tipo);
+
+      if (dado.tipo === "filme") {
+        const response = await api.get(endpoints.searchMovie + dado.pesquisa);
+        setPesquisa(response.data.results);
+      } else if (dado.tipo === "pessoa") {
+        const response = await api.get(endpoints.searchPeople + dado.pesquisa);
+        setPesquisa(response.data.results);
+      } else if (dado.tipo === "serie") {
+        const response = await api.get(endpoints.searchTV + dado.pesquisa);
+        setPesquisa(response.data.results);
+      }
     } catch (err) {
       console.log("fufu");
     }
