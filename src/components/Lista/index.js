@@ -21,10 +21,6 @@ export default function Index() {
   const { pesquisa, tipo } = usePesquisaContext();
   const classes = useStyles();
 
-  // dado tipo === pessoa              lista imprima <PessoaCard/>
-  // dado tipo === filme              lista imprime <FilmeCard/>
-  // dado tipo === serie              lista imprime <SerieCard/>
-
   return (
     <div>
       <ul className={classes.lista}>
@@ -35,6 +31,8 @@ export default function Index() {
             return <FilmesCard />;
           } else if (tipo === "serie") {
             return <SerieCard />;
+          } else {
+            return null;
           }
         })}
       </ul>

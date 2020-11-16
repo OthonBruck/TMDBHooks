@@ -6,6 +6,7 @@ import { useForm, FormProvider, Controller } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
 import { usePesquisaContext } from "../../context/PesquisaContext";
 import Radio from "@material-ui/core/Radio";
+import Lista from "../Lista/index";
 
 const initialState = "pessoa";
 
@@ -51,18 +52,21 @@ export default function Index() {
               <Controller
                 as={
                   <div>
+                    <label>Pessoa</label>
                     <Radio
                       checked={selectedValue === "pessoa"}
                       onChange={handleChange}
                       value="pessoa"
                       name="radio-button-demo"
                     />
+                    <label>Filme</label>
                     <Radio
                       checked={selectedValue === "filme"}
                       onChange={handleChange}
                       value="filme"
                       name="radio-button-demo"
                     />
+                    <label>Serie</label>
                     <Radio
                       checked={selectedValue === "serie"}
                       onChange={handleChange}
@@ -81,6 +85,7 @@ export default function Index() {
           </FormProvider>
         </Grid>
       </Grid>
+      <Lista />
     </div>
   );
 }
