@@ -24,13 +24,13 @@ export default function Index() {
   return (
     <div>
       <ul className={classes.lista}>
-        {pesquisa.map((task, index) => {
+        {pesquisa.map((result, index) => {
           if (tipo === "pessoa") {
-            return <PessoaCard />;
+            return <PessoaCard result={result} />;
           } else if (tipo === "filme") {
-            return <FilmesCard />;
+            return <FilmesCard result={result} />;
           } else if (tipo === "serie") {
-            return <SerieCard />;
+            return <SerieCard result={result} />;
           } else {
             return null;
           }

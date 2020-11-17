@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Index() {
+export default function Index({ result }) {
   const classes = useStyles();
   return (
     <li>
@@ -36,7 +36,7 @@ export default function Index() {
             Filmes
           </Typography>
           <Typography variant="h5" component="h2">
-            benevolent
+            {result.title}
           </Typography>
           <Typography color="textSecondary">adjective</Typography>
           <Typography variant="body2" component="p">
