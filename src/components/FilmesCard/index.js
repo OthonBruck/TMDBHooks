@@ -5,10 +5,11 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import { makeStyles } from "@material-ui/core";
+import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles({
   root: {
-    width: "275px",
+    width: "500px",
     flexWrap: "wrap",
     background: "#666666",
     margin: "5px",
@@ -24,6 +25,10 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  media: {
+    height: "400px",
+    paddingTop: "56.25%",
+  },
 });
 
 export default function Index({ result }) {
@@ -38,11 +43,16 @@ export default function Index({ result }) {
           <Typography variant="h5" component="h2">
             {result.title}
           </Typography>
-          <Typography color="textSecondary">adjective</Typography>
+          <CardMedia
+            className={classes.media}
+            image={"https://image.tmdb.org/t/p/original" + result.poster_path}
+            title={result.title}
+          />
           <Typography variant="body2" component="p">
-            well meaning and kindly.
+            Popularidade: {result.popularity}
             <br />
-            {'"a benevolent smile"'}
+            Media de Voto: {result.vote_average}
+            <br />
           </Typography>
         </CardContent>
         <CardActions>
