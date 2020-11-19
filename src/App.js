@@ -4,6 +4,9 @@ import PesquisaContextProvider from "./context/PesquisaContext";
 import Header from "./components/Header/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/index";
+import FilmeDetalhe from "./components/FilmeDetalhe/index";
+import PessoaDetalhe from "./components/PessoaDetalhe/index";
+import SerieDetalhe from "./components/SerieDetalhe/index";
 
 function App() {
   return (
@@ -13,7 +16,10 @@ function App() {
           <Header />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/pesquisa" component={Pesquisa} />
+            <Route path="/pesquisa" exact component={Pesquisa} />
+            <Route path="/pesquisa/pessoa/:id" component={PessoaDetalhe} />
+            <Route path="/pesquisa/filme/:id" component={FilmeDetalhe} />
+            <Route path="/pesquisa/serie/:id" component={SerieDetalhe} />
           </Switch>
         </PesquisaContextProvider>
       </Router>

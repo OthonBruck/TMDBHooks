@@ -10,7 +10,7 @@ import Lista from "../Lista/index";
 
 const initialState = "pessoa";
 
-export default function Index() {
+export const Index = () => {
   const onSubmit = async (dado) => {
     console.log(dado);
     listarPesquisa(dado);
@@ -88,4 +88,6 @@ export default function Index() {
       <Lista />
     </div>
   );
-}
+};
+
+export default Index;

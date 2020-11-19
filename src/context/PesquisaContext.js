@@ -23,6 +23,7 @@ export default function PesquisaContextProvider({ children }) {
       } else if (dado.tipo === "serie") {
         const response = await api.get(endpoints.searchTV + dado.pesquisa);
         setPesquisa(response.data.results);
+        console.log(pesquisa);
       }
     } catch (err) {
       console.log("fufu");
