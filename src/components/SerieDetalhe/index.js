@@ -8,7 +8,7 @@ export default function Index({ match }) {
   useEffect(() => {
     fetchItem();
     console.log(match.params.id);
-  }, []);
+  }, [match.params.id]);
 
   const fetchItem = async () => {
     const response = await api.get(
@@ -22,6 +22,14 @@ export default function Index({ match }) {
   return (
     <div>
       <h1>{dado.name}</h1>
+      <img
+        height="750px"
+        src={"https://image.tmdb.org/t/p/original" + dado.poster_path}
+      />
+      <h4>Gêneros: {"..."}</h4>
+      <h4>Primeira vez ao ar: {dado.first_air_date}</h4>
+      <h4>Descrição: {dado.overview}</h4>
+      <h4>Media de Votos: {dado.vote_average}</h4>
     </div>
   );
 }

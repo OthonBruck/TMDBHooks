@@ -5,11 +5,6 @@ import api from "../../services/api";
 export default function Index({ match }) {
   const [dado, setDado] = useState({});
 
-  useEffect(() => {
-    fetchItem();
-    console.log(match.params.id);
-  }, []);
-
   const fetchItem = async () => {
     const response = await api.get(
       "https://api.themoviedb.org/3/movie/" +
@@ -19,9 +14,22 @@ export default function Index({ match }) {
     setDado(response.data);
   };
 
+  useEffect(() => {
+    fetchItem();
+    console.log(match.params.id);
+  }, [match.params.id]);
+
   return (
     <div>
       <h1>{dado.title}</h1>
+      <img
+        height="550px"
+        src={"https://image.tmdb.org/t/p/original" + dado.poster_path}
+      ></img>
+      <h4>Gêneros: {"..."}</h4>
+      <h4>Data de Lançamento: {dado.release_date}</h4>
+      <h4>Descrição: {dado.overview}</h4>
+      <h4>Media de Votos: {dado.vote_average}</h4>
     </div>
   );
 }
