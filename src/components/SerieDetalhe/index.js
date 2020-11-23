@@ -1,3 +1,4 @@
+import Button from "@material-ui/core/Button";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
@@ -30,6 +31,7 @@ export default function Index({ match }) {
       <h4>Primeira vez ao ar: {dado.first_air_date}</h4>
       <h4>Descrição: {dado.overview}</h4>
       <h4>Media de Votos: {dado.vote_average}</h4>
+      <Button>Adicionar Favorito</Button>
     </div>
   );
 }

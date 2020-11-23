@@ -10,7 +10,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 const useStyles = makeStyles({
   root: {
     width: "500px",
-    flexWrap: "wrap",
     background: "#666666",
     margin: "5px",
   },

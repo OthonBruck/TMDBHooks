@@ -11,8 +11,9 @@ const useStyles = makeStyles({
   root: {
     width: "500px",
     flexWrap: "wrap",
-    background: "#666666",
+    background: "#424242",
     margin: "5px",
+    color: "white",
   },
   bullet: {
     display: "inline-block",
@@ -25,10 +26,7 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-  media: {
-    height: "500px",
-    paddingTop: "56.25%",
-  },
+  media: {},
 });
 
 export default function Index({ result }) {
@@ -37,24 +35,19 @@ export default function Index({ result }) {
     <li>
       <Card className={classes.root} variant="outlined">
         <CardContent>
-          <Typography color="textSecondary" gutterBottom>
-            Pessoa
-          </Typography>
+          <Typography>Pessoa</Typography>
           <Typography variant="h5" component="h2">
             {result.name}
           </Typography>
-          <CardMedia
+          <img
+            width="250px"
             className={classes.media}
-            image={"https://image.tmdb.org/t/p/original" + result.profile_path}
-            title={result.name}
+            src={"https://image.tmdb.org/t/p/original" + result.profile_path}
           />
           <Typography variant="body2" component="p">
             Popularidade: {result.popularity}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Saiba Mais</Button>
-        </CardActions>
       </Card>
     </li>
   );

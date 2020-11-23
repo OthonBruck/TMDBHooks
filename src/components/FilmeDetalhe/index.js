@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
+import Button from "@material-ui/core/Button";
 
 export default function Index({ match }) {
   const [dado, setDado] = useState({});
@@ -30,6 +31,7 @@ export default function Index({ match }) {
       <h4>Data de Lançamento: {dado.release_date}</h4>
       <h4>Descrição: {dado.overview}</h4>
       <h4>Media de Votos: {dado.vote_average}</h4>
+      <Button>Adicionar Favorito</Button>
     </div>
   );
 }

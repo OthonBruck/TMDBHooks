@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import { usePesquisaContext } from "../../context/PesquisaContext";
 import Radio from "@material-ui/core/Radio";
 import Lista from "../Lista/index";
+import { withStyles } from "@material-ui/core";
 
 const initialState = "pessoa";
 
@@ -15,6 +16,16 @@ export const Index = () => {
     console.log(dado);
     listarPesquisa(dado);
   };
+
+  const CustomizedRadio = withStyles({
+    root: {
+      color: "black",
+      "&$checked": {
+        color: "white",
+      },
+    },
+    checked: {},
+  })((props) => <Radio color="default" {...props} />);
 
   const classes = useStyles();
 
@@ -33,13 +44,14 @@ export const Index = () => {
 
   return (
     <div>
-      <Grid container className={classes.Grid} spacing={3}>
-        <Grid item xs={12}>
-          <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider {...methods}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+          <Grid container className={classes.Grid} spacing={3}>
+            <Grid item xs={12} className={classes.gridItem}>
               <Controller
                 as={
                   <TextField
+                    size="medium"
                     variant="standard"
                     label="dsadsa"
                     type="text"
@@ -49,25 +61,27 @@ export const Index = () => {
                 name="pesquisa"
                 defaultValue=""
               />
+            </Grid>
+            <Grid item xs={12} className={classes.gridItem}>
               <Controller
                 as={
                   <div>
                     <label>Pessoa</label>
-                    <Radio
+                    <CustomizedRadio
                       checked={selectedValue === "pessoa"}
                       onChange={handleChange}
                       value="pessoa"
                       name="radio-button-demo"
                     />
                     <label>Filme</label>
-                    <Radio
+                    <CustomizedRadio
                       checked={selectedValue === "filme"}
                       onChange={handleChange}
                       value="filme"
                       name="radio-button-demo"
                     />
                     <label>Serie</label>
-                    <Radio
+                    <CustomizedRadio
                       checked={selectedValue === "serie"}
                       onChange={handleChange}
                       value="serie"
@@ -78,13 +92,15 @@ export const Index = () => {
                 name="tipo"
                 defaultValue={selectedValue}
               />
+            </Grid>
+            <Grid item xs={12} className={classes.gridItem}>
               <Button variant="contained" color="primary" type="submit">
                 Primary
               </Button>
-            </form>
-          </FormProvider>
-        </Grid>
-      </Grid>
+            </Grid>
+          </Grid>
+        </form>
+      </FormProvider>
       <Lista />
     </div>
   );

@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    background: "#666666",
+    background: "#212121",
     color: "white",
     padding: theme.spacing(1),
   },
