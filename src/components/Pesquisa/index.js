@@ -53,7 +53,7 @@ export const Index = () => {
                   <TextField
                     size="medium"
                     variant="standard"
-                    label="dsadsa"
+                    label="Pesquisar"
                     type="text"
                     value=""
                   />

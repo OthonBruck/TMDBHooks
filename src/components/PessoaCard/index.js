@@ -4,7 +4,7 @@ import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
-import { makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles({
@@ -14,11 +14,9 @@ const useStyles = makeStyles({
     background: "#424242",
     margin: "5px",
     color: "white",
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+    "&:hover": {
+      opacity: 0.9,
+    },
   },
   title: {
     fontSize: 14,
@@ -27,28 +25,46 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
   media: {},
+  foto: {
+    display: "flex",
+    justifyContent: "center",
+    margin: 10,
+  },
+  gridItem: {
+    marginTop: 3,
+  },
 });
 
 export default function Index({ result }) {
   const classes = useStyles();
   return (
     <li>
-      <Card className={classes.root} variant="outlined">
-        <CardContent>
-          <Typography>Pessoa</Typography>
-          <Typography variant="h5" component="h2">
-            {result.name}
-          </Typography>
-          <img
-            width="250px"
-            className={classes.media}
-            src={"https://image.tmdb.org/t/p/original" + result.profile_path}
-          />
-          <Typography variant="body2" component="p">
-            Popularidade: {result.popularity}
-          </Typography>
-        </CardContent>
-      </Card>
+      <Grid container className={classes.gridContainer}>
+        <Card className={classes.root} variant="outlined">
+          <CardContent>
+            <Typography>Pessoa</Typography>
+            <Grid item xs={12} className={classes.gridItem}>
+              <Typography variant="h5" component="h2">
+                {result.name}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} className={classes.foto}>
+              <img
+                width="250px"
+                className={classes.media}
+                src={
+                  "https://image.tmdb.org/t/p/original" + result.profile_path
+                }
+              />
+            </Grid>
+            <Grid item xs={12} className={classes.gridItem}>
+              <Typography variant="body2" component="p">
+                Popularidade: {result.popularity}
+              </Typography>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
     </li>
   );
 }

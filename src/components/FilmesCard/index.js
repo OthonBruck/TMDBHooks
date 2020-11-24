@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   root: {
     width: "500px",
     flexWrap: "wrap",
-    background: "#666666",
+    background: "",
     margin: "5px",
   },
   bullet: {

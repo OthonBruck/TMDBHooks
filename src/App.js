@@ -1,7 +1,7 @@
 import React from "react";
 import Pesquisa from "./components/Pesquisa/index";
 import PesquisaContextProvider from "./context/PesquisaContext";
-import Header from "./components/Header/index";
+import Header from "./components/Menu/index";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/index";
 import FilmeDetalhe from "./components/FilmeDetalhe/index";

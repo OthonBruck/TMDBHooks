@@ -25,11 +25,23 @@ export const useStyles = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      "& label.Mui-focused": {
+        color: "#FFFFFF",
+      },
+      "& label": {
+        color: "#FFFFFF",
+      },
+      "& .MuiInput-underline:after": {
+        borderBottomColor: "#FFFFFF",
+      },
+      "& .MuiInput-underline:before": {
+        borderBottomColor: "#FFFFFF",
+      },
     },
     radio: {
       color: "black",
       "&$checked": {
-        color: "white",
+        color: "#FFFFFF",
       },
     },
     checked: {},
