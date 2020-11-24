@@ -4,20 +4,20 @@ import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
-import { makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles({
   root: {
-    width: "500px",
+    width: "400px",
+    height: 525,
     flexWrap: "wrap",
-    background: "",
+    background: "#424242",
     margin: "5px",
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+    color: "white",
+    "&:hover": {
+      opacity: 0.9,
+    },
   },
   title: {
     fontSize: 14,
@@ -25,9 +25,13 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-  media: {
-    height: "400px",
-    paddingTop: "56.25%",
+  foto: {
+    display: "flex",
+    justifyContent: "center",
+    margin: 10,
+  },
+  gridItem: {
+    marginTop: 3,
   },
 });
 
@@ -35,30 +39,33 @@ export default function Index({ result }) {
   const classes = useStyles();
   return (
     <li>
-      <Card className={classes.root} variant="outlined">
-        <CardContent>
-          <Typography color="textSecondary" gutterBottom>
-            Filmes
-          </Typography>
-          <Typography variant="h5" component="h2">
-            {result.title}
-          </Typography>
-          <CardMedia
-            className={classes.media}
-            image={"https://image.tmdb.org/t/p/original" + result.poster_path}
-            title={result.title}
-          />
-          <Typography variant="body2" component="p">
-            Popularidade: {result.popularity}
-            <br />
-            Media de Voto: {result.vote_average}
-            <br />
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
+      <Grid container className={classes.gridContainer}>
+        <Card className={classes.root} variant="outlined">
+          <CardContent>
+            <Typography>Filme</Typography>
+            <Grid item xs={12} className={classes.gridItem}>
+              <Typography variant="h5" component="h2">
+                {result.title}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} className={classes.foto}>
+              <img
+                width="250px"
+                className={classes.media}
+                src={"https://image.tmdb.org/t/p/original" + result.poster_path}
+              />
+            </Grid>
+            <Grid item xs={12} className={classes.gridItem}>
+              <Typography variant="body2" component="p">
+                Popularidade: {result.popularity}
+                <br />
+                Media de Voto: {result.vote_average}
+                <br />
+              </Typography>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
     </li>
   );
 }
