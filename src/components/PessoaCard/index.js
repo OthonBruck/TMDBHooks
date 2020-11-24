@@ -2,10 +2,9 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import React from "react";
-import Button from "@material-ui/core/Button";
-import CardActions from "@material-ui/core/CardActions";
 import { Grid, makeStyles } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
+import teste from "../../assets/images/not.jpg";
 
 const useStyles = makeStyles({
   root: {
@@ -34,6 +33,10 @@ const useStyles = makeStyles({
   gridItem: {
     marginTop: 3,
   },
+  media: {
+    width: "250px",
+    height: "365px",
+  },
 });
 
 export default function Index({ result }) {
@@ -50,13 +53,21 @@ export default function Index({ result }) {
               </Typography>
             </Grid>
             <Grid item xs={12} className={classes.foto}>
-              <img
-                width="250px"
-                className={classes.media}
-                src={
-                  "https://image.tmdb.org/t/p/original" + result.profile_path
-                }
-              />
+              {result.profile_path !== null ? (
+                <CardMedia
+                  className={classes.media}
+                  component="img"
+                  image={
+                    "https://image.tmdb.org/t/p/original" + result.profile_path
+                  }
+                />
+              ) : (
+                <CardMedia
+                  className={classes.media}
+                  component="img"
+                  image={teste}
+                />
+              )}
             </Grid>
             <Grid item xs={12} className={classes.gridItem}>
               <Typography variant="body2" component="p">

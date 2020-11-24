@@ -52,23 +52,21 @@ export default function Index({ result }) {
               </Typography>
             </Grid>
             <Grid item xs={12} className={classes.foto}>
-              <div>
-                {result.poster_path !== null ? (
-                  <CardMedia
-                    className={classes.media}
-                    component="img"
-                    image={
-                      "https://image.tmdb.org/t/p/original" + result.poster_path
-                    }
-                  />
-                ) : (
-                  <CardMedia
-                    className={classes.media}
-                    component="img"
-                    image={teste}
-                  />
-                )}
-              </div>
+              {result.poster_path !== null ? (
+                <CardMedia
+                  className={classes.media}
+                  component="img"
+                  image={
+                    "https://image.tmdb.org/t/p/original" + result.poster_path
+                  }
+                />
+              ) : (
+                <CardMedia
+                  className={classes.media}
+                  component="img"
+                  image={teste}
+                />
+              )}
             </Grid>
             <Grid item xs={12} className={classes.gridItem}>
               <Typography variant="body2" component="p">
