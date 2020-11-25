@@ -9,7 +9,7 @@ import teste from "../../assets/images/not.jpg";
 const useStyles = makeStyles({
   root: {
     width: "400px",
-    height: 525,
+    height: 500,
     flexWrap: "wrap",
     background: "#424242",
     margin: "5px",
@@ -24,7 +24,6 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-  media: {},
   foto: {
     display: "flex",
     justifyContent: "center",

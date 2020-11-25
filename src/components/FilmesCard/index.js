@@ -8,7 +8,7 @@ import teste from "../../assets/images/not.jpg";
 const useStyles = makeStyles({
   root: {
     width: "400px",
-    height: 525,
+    height: 545,
     flexWrap: "wrap",
     background: "#424242",
     margin: "5px",

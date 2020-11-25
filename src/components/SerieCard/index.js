@@ -8,7 +8,7 @@ import teste from "../../assets/images/not.jpg";
 const useStyles = makeStyles({
   root: {
     width: "400px",
-    height: 535,
+    height: 545,
     flexWrap: "wrap",
     background: "#424242",
     margin: "5px",
@@ -73,8 +73,6 @@ export default function Index({ result }) {
                 Popularidade: {result.popularity}
                 <br />
                 Media de Votos: {result.vote_average}
-                <br />
-                Data Lançamento: {result.first_air_date}
                 <br />
               </Typography>
             </Grid>
