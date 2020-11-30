@@ -39,7 +39,6 @@ const useStyles = makeStyles({
 
 export default function Index({ result }) {
   const classes = useStyles();
-  console.log(result.poster_path);
   return (
     <li>
       <Grid container className={classes.gridContainer}>

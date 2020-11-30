@@ -3,6 +3,7 @@ import { useState } from "react";
 import api from "../../services/api";
 import Button from "@material-ui/core/Button";
 import { Grid, makeStyles } from "@material-ui/core";
+import teste from "../../assets/images/not.jpg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -29,18 +30,17 @@ export default function Index({ match }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
-  const fetchItem = async () => {
-    const response = await api.get(
-      "https://api.themoviedb.org/3/movie/" +
-        match.params.id +
-        "?api_key=d61ca0998c8a152c6556e310a4a8e4db&language=pt-BR"
-    );
-    setDado(response.data);
-  };
-
   useEffect(() => {
+    const fetchItem = async () => {
+      const response = await api.get(
+        "https://api.themoviedb.org/3/movie/" +
+          match.params.id +
+          "?api_key=d61ca0998c8a152c6556e310a4a8e4db&language=pt-BR"
+      );
+      setDado(response.data);
+    };
     fetchItem();
-    console.log(match.params.id);
+    console.log("entrei");
   }, [match.params.id]);
 
   return (
@@ -50,20 +50,34 @@ export default function Index({ match }) {
           <h1>{dado.title}</h1>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          <img
-            height="550px"
-            src={"https://image.tmdb.org/t/p/original" + dado.poster_path}
-            alt={dado.title}
-          />
+          {dado.poster_path !== null ? (
+            <img
+              height="550px"
+              src={"https://image.tmdb.org/t/p/original" + dado.poster_path}
+              alt={dado.name}
+            />
+          ) : (
+            <img height="550px" src={teste} alt="Imagem não encontrada" />
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          <h4>Gêneros: {"..."}</h4>
+          <h4>
+            Generos: {dado.genres && dado.genres.map((a) => a.name).join(", ")}
+          </h4>
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          <h4>Data de Lançamento: {dado.release_date}</h4>
+          {dado.release_date !== "" ? (
+            <h4>Data de Lançamento: {dado.release_date}</h4>
+          ) : (
+            <h4>Data de Lançamento: Não há informações de data</h4>
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          <h4>Descrição: {dado.overview}</h4>
+          {dado.overview !== "" ? (
+            <h4>Descrição: {dado.overview}</h4>
+          ) : (
+            <h4>Descrição: Não há descrição</h4>
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           <h4>Media de Votos: {dado.vote_average}</h4>

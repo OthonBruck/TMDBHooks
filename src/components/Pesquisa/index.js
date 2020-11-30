@@ -95,7 +95,7 @@ export const Index = () => {
             </Grid>
             <Grid item xs={12} className={classes.gridItem}>
               <Button variant="contained" color="primary" type="submit">
-                Primary
+                Pesquisar
               </Button>
             </Grid>
           </Grid>

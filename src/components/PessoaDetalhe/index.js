@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
+import teste from "../../assets/images/not.jpg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,18 +31,17 @@ export default function Index({ match }) {
   const [dado, setDado] = useState({});
 
   useEffect(() => {
+    const fetchItem = async () => {
+      const response = await api.get(
+        "https://api.themoviedb.org/3/person/" +
+          match.params.id +
+          "?api_key=d61ca0998c8a152c6556e310a4a8e4db&language=pt-BR"
+      );
+      setDado(response.data);
+    };
     fetchItem();
     console.log(match.params.id);
   }, [match.params.id]);
-
-  const fetchItem = async () => {
-    const response = await api.get(
-      "https://api.themoviedb.org/3/person/" +
-        match.params.id +
-        "?api_key=d61ca0998c8a152c6556e310a4a8e4db&language=pt-BR"
-    );
-    setDado(response.data);
-  };
 
   return (
     <div className={classes.container}>
@@ -50,20 +50,36 @@ export default function Index({ match }) {
           <h1>{dado.name}</h1>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          <img
-            height="500px"
-            src={"https://image.tmdb.org/t/p/original" + dado.profile_path}
-            alt={dado.name}
-          />
+          {dado.profile_path !== null ? (
+            <img
+              height="500px"
+              src={"https://image.tmdb.org/t/p/original" + dado.profile_path}
+              alt={dado.name}
+            />
+          ) : (
+            <img height="500px" src={teste} alt="Imagem não encontrada" />
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          <h4>Biografia: {dado.biography}</h4>
+          {dado.biography !== "" ? (
+            <h4>Biografia: {dado.biography}</h4>
+          ) : (
+            <h4>Biografia: Não há biografia</h4>
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          <h4>Data de Aniversario: {dado.birthday}</h4>
+          {dado.birthday !== null ? (
+            <h4>Data de Aniversario: {dado.birthday}</h4>
+          ) : (
+            <h4>Data de Aniversario: Sem informações de data</h4>
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          <h4>Local de Nascimento: {dado.place_of_birth}</h4>
+          {dado.place_of_birth !== null ? (
+            <h4>Local de Nascimento: {dado.place_of_birth}</h4>
+          ) : (
+            <h4>Local de Nascimento: Sem informações de local</h4>
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           <h4>Popularidade: {dado.popularity}</h4>
