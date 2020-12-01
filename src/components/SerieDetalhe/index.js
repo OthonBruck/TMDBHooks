@@ -61,9 +61,14 @@ export default function Index({ match }) {
           )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          <h4>
-            Generos: {dado.genres && dado.genres.map((a) => a.name).join(", ")}
-          </h4>
+          {dado.genres && dado.genres.length === 0 ? (
+            <h4>Generos: Não há informações de generos</h4>
+          ) : (
+            <h4>
+              Generos:{" "}
+              {dado.genres && dado.genres.map((a) => a.name).join(", ")}
+            </h4>
+          )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           {dado.first_air_date !== null ? (

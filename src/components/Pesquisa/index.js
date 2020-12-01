@@ -9,6 +9,10 @@ import Radio from "@material-ui/core/Radio";
 import Lista from "../Lista/index";
 import { withStyles } from "@material-ui/core";
 
+import schema from "./schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Errormessage from "../Error/index";
+
 const initialState = "pessoa";
 
 export const Index = () => {
@@ -31,9 +35,10 @@ export const Index = () => {
 
   const methods = useForm({
     reValidateMode: "onBlur",
+    resolver: yupResolver(schema),
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, errors } = methods;
 
   const { listarPesquisa } = usePesquisaContext();
 
@@ -61,6 +66,9 @@ export const Index = () => {
                 name="pesquisa"
                 defaultValue=""
               />
+            </Grid>
+            <Grid item xs={12} className={classes.gridItem}>
+              <Errormessage errors={errors} />
             </Grid>
             <Grid item xs={12} className={classes.gridItem}>
               <Controller
