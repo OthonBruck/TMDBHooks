@@ -78,21 +78,18 @@ export const Index = () => {
                       checked={selectedValue === "pessoa"}
                       onChange={handleChange}
                       value="pessoa"
-                      name="radio-button-demo"
                     />
                     <label>Pessoa</label>
                     <CustomizedRadio
                       checked={selectedValue === "filme"}
                       onChange={handleChange}
                       value="filme"
-                      name="radio-button-demo"
                     />
                     <label>Filme</label>
                     <CustomizedRadio
                       checked={selectedValue === "serie"}
                       onChange={handleChange}
                       value="serie"
-                      name="radio-button-demo"
                     />
                     <label>Serie</label>
                   </div>
