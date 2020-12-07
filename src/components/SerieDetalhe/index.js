@@ -74,9 +74,7 @@ export default function Index({ match }) {
       setDado(response.data);
     };
     fetchItem();
-    console.log(match.params.id);
   }, [match.params.id]);
-  console.log(dado);
   return (
     <div>
       <div className={classes.container}>

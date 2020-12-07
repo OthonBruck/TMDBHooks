@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/api";
 import { endpoints } from "../services/endpoints";
 
@@ -9,6 +9,29 @@ const initialState = [];
 export default function PesquisaContextProvider({ children }) {
   const [pesquisa, setPesquisa] = useState(initialState);
   const [tipo, setTipo] = useState(null);
+  const [favoritos, setFavorito] = useState(initialState);
+
+  function adicionarFavorito(favorito) {
+    setFavorito((prevState) => [favorito, ...prevState]);
+  }
+
+  function removerFavorito(index) {
+    const newFavorito = favoritos.filter((id) => id.id !== index);
+    setFavorito(newFavorito);
+  }
+
+  useEffect(() => {
+    const dados = JSON.parse(localStorage.getItem("favorito"));
+    if (dados === null) {
+      setFavorito(initialState);
+    } else {
+      setFavorito(dados);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorito", JSON.stringify(favoritos));
+  }, [favoritos]);
 
   async function listarPesquisa(dado) {
     try {
@@ -23,7 +46,6 @@ export default function PesquisaContextProvider({ children }) {
       } else if (dado.tipo === "serie") {
         const response = await api.get(endpoints.searchTV + dado.pesquisa);
         setPesquisa(response.data.results);
-        console.log(pesquisa);
       }
     } catch (err) {
       console.log("fufu");
@@ -34,6 +56,10 @@ export default function PesquisaContextProvider({ children }) {
     <PesquisaContext.Provider
       value={{
         listarPesquisa,
+        adicionarFavorito,
+        setFavorito,
+        removerFavorito,
+        favoritos,
         pesquisa,
         tipo,
       }}
@@ -44,7 +70,23 @@ export default function PesquisaContextProvider({ children }) {
 }
 
 export function usePesquisaContext() {
-  const { listarPesquisa, pesquisa, tipo } = useContext(PesquisaContext);
+  const {
+    listarPesquisa,
+    adicionarFavorito,
+    setFavorito,
+    removerFavorito,
+    favoritos,
+    pesquisa,
+    tipo,
+  } = useContext(PesquisaContext);
 
-  return { listarPesquisa, pesquisa, tipo };
+  return {
+    listarPesquisa,
+    adicionarFavorito,
+    setFavorito,
+    removerFavorito,
+    favoritos,
+    pesquisa,
+    tipo,
+  };
 }

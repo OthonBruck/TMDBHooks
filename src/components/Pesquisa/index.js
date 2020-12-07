@@ -17,7 +17,6 @@ const initialState = "pessoa";
 
 export const Index = () => {
   const onSubmit = async (dado) => {
-    console.log(dado);
     listarPesquisa(dado);
   };
 

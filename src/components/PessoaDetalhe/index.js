@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
 import teste from "../../assets/images/not.jpg";
+import { usePesquisaContext } from "../../context/PesquisaContext";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Index({ match }) {
+  const {
+    adicionarFavorito,
+    removerFavorito,
+    favoritos,
+  } = usePesquisaContext();
+
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
@@ -40,9 +47,9 @@ export default function Index({ match }) {
       setDado(response.data);
     };
     fetchItem();
-    console.log(match.params.id);
   }, [match.params.id]);
 
+  console.log();
   return (
     <div className={classes.container}>
       <Grid container spacing={0} className={classes.gridContainer}>
@@ -85,9 +92,23 @@ export default function Index({ match }) {
           <h4>Popularidade: {dado.popularity}</h4>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          <Button variant="contained" color="primary">
-            Adicionar Favorito
-          </Button>
+          {favoritos.find((dados) => dados.id === dado.id) !== undefined ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => removerFavorito(dado.id)}
+            >
+              Remover Favorito
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => adicionarFavorito(dado)}
+            >
+              Adicionar Favorito
+            </Button>
+          )}
         </Grid>
       </Grid>
     </div>

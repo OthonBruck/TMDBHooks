@@ -57,7 +57,7 @@ export default function Index() {
               to="/"
               className={classes.link}
             >
-              Home
+              Trending
             </Link>
             <Link
               variant="button"
@@ -73,7 +73,7 @@ export default function Index() {
               to="/pesquisa"
               className={classes.link}
             >
-              Sobre
+              Favoritos
             </Link>
           </nav>
         </Toolbar>
