@@ -7,6 +7,7 @@ import Home from "./pages/Home/index";
 import FilmeDetalhe from "./components/FilmeDetalhe/index";
 import PessoaDetalhe from "./components/PessoaDetalhe/index";
 import SerieDetalhe from "./components/SerieDetalhe/index";
+import Favorito from "./pages/Favoritos/index";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/pesquisa" exact component={Pesquisa} />
+            <Route path="/favoritos" component={Favorito} />
             <Route path="/pesquisa/pessoa/:id" component={PessoaDetalhe} />
             <Route path="/pesquisa/filme/:id" component={FilmeDetalhe} />
             <Route path="/pesquisa/serie/:id" component={SerieDetalhe} />

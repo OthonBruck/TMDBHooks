@@ -2,7 +2,7 @@ import Grid from "@material-ui/core/Grid";
 import React, { useState } from "react";
 import useStyles from "./styles";
 import Button from "@material-ui/core/Button";
-import { useForm, FormProvider, Controller } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
 import { usePesquisaContext } from "../../context/PesquisaContext";
 import Radio from "@material-ui/core/Radio";
@@ -12,6 +12,7 @@ import { withStyles } from "@material-ui/core";
 import schema from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Errormessage from "../Error/index";
+import FieldWrapper from "../FieldWrapper/index";
 
 const initialState = "pessoa";
 
@@ -52,7 +53,7 @@ export const Index = () => {
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container className={classes.Grid} spacing={3}>
             <Grid item xs={12} className={classes.gridItem}>
-              <Controller
+              <FieldWrapper
                 as={
                   <TextField
                     size="medium"
@@ -70,7 +71,7 @@ export const Index = () => {
               <Errormessage errors={errors} />
             </Grid>
             <Grid item xs={12} className={classes.gridItem}>
-              <Controller
+              <FieldWrapper
                 as={
                   <div>
                     <CustomizedRadio

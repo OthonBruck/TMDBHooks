@@ -70,7 +70,7 @@ export default function Index() {
             <Link
               variant="button"
               color="textPrimary"
-              to="/pesquisa"
+              to="/favoritos"
               className={classes.link}
             >
               Favoritos
