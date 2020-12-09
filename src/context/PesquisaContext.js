@@ -8,7 +8,6 @@ const initialState = [];
 
 export default function PesquisaContextProvider({ children }) {
   const [pesquisa, setPesquisa] = useState(initialState);
-  const [tipo, setTipo] = useState(null);
   const [favoritos, setFavorito] = useState(initialState);
 
   function adicionarFavorito(favorito) {
@@ -35,8 +34,6 @@ export default function PesquisaContextProvider({ children }) {
 
   async function listarPesquisa(dado) {
     try {
-      setTipo(dado.tipo);
-
       if (dado.tipo === "filme") {
         const response = await api.get(endpoints.searchMovie + dado.pesquisa);
         setPesquisa(response.data.results);
@@ -61,7 +58,6 @@ export default function PesquisaContextProvider({ children }) {
         removerFavorito,
         favoritos,
         pesquisa,
-        tipo,
       }}
     >
       {children}
@@ -77,7 +73,6 @@ export function usePesquisaContext() {
     removerFavorito,
     favoritos,
     pesquisa,
-    tipo,
   } = useContext(PesquisaContext);
 
   return {
@@ -87,6 +82,5 @@ export function usePesquisaContext() {
     removerFavorito,
     favoritos,
     pesquisa,
-    tipo,
   };
 }
