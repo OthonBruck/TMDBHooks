@@ -11,6 +11,7 @@ Projeto criado com base na API do TMDB com intenção de buscar informações da
 - [Axios](https://github.com/axios/axios)
 - [React Hook Form](https://react-hook-form.com/)
 - [Material IU](https://material-ui.com/pt/)
+- [Yup](https://github.com/jquense/yup)
 
 
 ## Clone e Instalação
