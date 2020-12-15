@@ -1,6 +1,6 @@
-import { Radio, withStyles } from "@material-ui/core";
 import React, { useState } from "react";
 import FieldWrapper from "../FieldWrapper/index";
+import { CustomizedRadio } from "./styles";
 
 const initialState = "pessoa";
 
@@ -10,16 +10,6 @@ export default function Index() {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-
-  const CustomizedRadio = withStyles({
-    root: {
-      color: "black",
-      "&$checked": {
-        color: "white",
-      },
-    },
-    checked: {},
-  })((props) => <Radio color="default" {...props} />);
 
   return (
     <div>

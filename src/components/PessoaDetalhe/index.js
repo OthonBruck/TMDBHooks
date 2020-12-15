@@ -1,31 +1,11 @@
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
 import teste from "../../assets/images/not.jpg";
 import { usePesquisaContext } from "../../context/PesquisaContext";
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  gridContainer: {
-    width: 1000,
-    marginTop: 10,
-    flexWrap: "wrap",
-    background: "#424242",
-    color: "white",
-    border: "2px solid black",
-    borderRadius: "5px",
-    padding: theme.spacing(1),
-  },
-  gridItem: {
-    alignItems: "center",
-    display: "flex",
-  },
-}));
+import { useStyles } from "./styles";
 
 export default function Index({ match }) {
   const {

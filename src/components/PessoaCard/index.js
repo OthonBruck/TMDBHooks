@@ -1,81 +1,48 @@
-import Typography from "@material-ui/core/Typography";
+import { Grid } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import React from "react";
-import { Grid, makeStyles } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import React from "react";
 import teste from "../../assets/images/not.jpg";
-
-const useStyles = makeStyles({
-  root: {
-    width: "400px",
-    height: 500,
-    flexWrap: "wrap",
-    background: "#424242",
-    margin: "5px",
-    color: "white",
-    "&:hover": {
-      opacity: 0.9,
-    },
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  foto: {
-    display: "flex",
-    justifyContent: "center",
-    margin: 10,
-  },
-  gridItem: {
-    marginTop: 3,
-  },
-  media: {
-    width: "250px",
-    height: "365px",
-  },
-});
+import { useStyles } from "./styles";
 
 export default function Index({ result }) {
   const classes = useStyles();
   return (
-    <li>
-      <Grid container className={classes.gridContainer}>
-        <Card className={classes.root} variant="outlined">
-          <CardContent>
-            <Typography>Pessoa</Typography>
-            <Grid item xs={12} className={classes.gridItem}>
-              <Typography variant="h5" component="h2">
-                {result.name}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} className={classes.foto}>
-              {result.profile_path !== null ? (
-                <CardMedia
-                  className={classes.media}
-                  component="img"
-                  image={
-                    "https://image.tmdb.org/t/p/original" + result.profile_path
-                  }
-                />
-              ) : (
-                <CardMedia
-                  className={classes.media}
-                  component="img"
-                  image={teste}
-                />
-              )}
-            </Grid>
-            <Grid item xs={12} className={classes.gridItem}>
-              <Typography variant="body2" component="p">
-                Popularidade: {result.popularity}
-              </Typography>
-            </Grid>
-          </CardContent>
-        </Card>
-      </Grid>
+    <li className={classes.div}>
+      <Card className={classes.root} variant="outlined">
+        <CardContent>
+          <Typography>Pessoa</Typography>
+          <Grid item xs={12} className={classes.gridItem}>
+            <Typography variant="h5" component="h2">
+              {result.name}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} className={classes.foto}>
+            {result.profile_path !== null ? (
+              <CardMedia
+                className={classes.media}
+                component="img"
+                image={
+                  "https://image.tmdb.org/t/p/original" + result.profile_path
+                }
+              />
+            ) : (
+              <CardMedia
+                className={classes.media}
+                component="img"
+                image={teste}
+              />
+            )}
+          </Grid>
+          <Grid item xs={12} className={classes.gridItem}>
+            <Typography variant="body2" component="p">
+              Popularidade: {result.popularity}
+            </Typography>
+          </Grid>
+        </CardContent>
+      </Card>
     </li>
   );
 }

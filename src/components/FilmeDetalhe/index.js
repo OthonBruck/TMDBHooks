@@ -2,33 +2,20 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
 import Button from "@material-ui/core/Button";
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import teste from "../../assets/images/not.jpg";
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  gridContainer: {
-    width: 1000,
-    marginTop: 10,
-    flexWrap: "wrap",
-    background: "#424242",
-    color: "white",
-    border: "2px solid black",
-    borderRadius: "5px",
-    padding: theme.spacing(1),
-  },
-  gridItem: {
-    alignItems: "center",
-    display: "flex",
-  },
-}));
+import { usePesquisaContext } from "../../context/PesquisaContext";
+import { useStyles } from "./styles";
 
 export default function Index({ match }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
+
+  const {
+    favoritos,
+    removerFavorito,
+    adicionarFavorito,
+  } = usePesquisaContext();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -87,9 +74,23 @@ export default function Index({ match }) {
           <h4>Media de Votos: {dado.vote_average}</h4>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          <Button variant="contained" color="primary">
-            Adicionar Favorito
-          </Button>
+          {favoritos.find((dados) => dados.id === dado.id) !== undefined ? (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => removerFavorito(dado.id)}
+            >
+              Remover Favorito
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => adicionarFavorito(dado)}
+            >
+              Adicionar Favorito
+            </Button>
+          )}
         </Grid>
       </Grid>
     </div>
