@@ -1,9 +1,13 @@
+//#region imports
+
 import React from "react";
 import FilmesCard from "../FilmesCard/index";
 import SerieCard from "../SerieCard/index";
 import PessoaCard from "../PessoaCard/index";
 import { Link } from "react-router-dom";
 import { useStyles } from "./styles";
+
+//#endregion
 
 export default function Index({ lista }) {
   const classes = useStyles();

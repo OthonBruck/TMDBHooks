@@ -18,5 +18,6 @@ export const useStyles = makeStyles((theme) => ({
   gridItem: {
     alignItems: "center",
     display: "flex",
+    justifyContent: "center",
   },
 }));

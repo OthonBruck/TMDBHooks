@@ -1,12 +1,11 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import React from "react";
-import teste from "../../assets/images/not.jpg";
+import NotFound from "../../assets/images/not.jpg";
+import Formatters from "../../utils/formatters";
 import { useStyles } from "./styles";
 
 export default function Index({ a }) {
@@ -36,13 +35,13 @@ export default function Index({ a }) {
                   <CardMedia
                     className={classes.media}
                     component="img"
-                    image={teste}
+                    image={NotFound}
                   />
                 )}
               </Grid>
               <Grid item xs={12} className={classes.gridCard}>
                 <Typography variant="body2" component="p">
-                  Primeira vez ao ar: {a.air_date}
+                  Primeira vez ao ar: {Formatters.formatDate(a.air_date)}
                   <br />
                   Número de episodios: {a.episode_count}
                   <br />

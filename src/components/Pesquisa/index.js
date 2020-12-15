@@ -4,13 +4,14 @@ import useStyles from "./styles";
 import Button from "@material-ui/core/Button";
 import { useForm, FormProvider } from "react-hook-form";
 import { usePesquisaContext } from "../../context/PesquisaContext";
-import CardWrapper from "../CardWrapper/index";
 
 import schema from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import Errormessage from "../Error/index";
 import FieldRadio from "../FieldRadio/index";
 import FieldInput from "../FieldInput/index";
+import CardWrapper from "../CardWrapper/index";
 
 export const Index = () => {
   const onSubmit = async (dado) => {

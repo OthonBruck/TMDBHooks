@@ -2,8 +2,9 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import React from "react";
-import { CardMedia, Grid } from "@material-ui/core";
-import teste from "../../assets/images/not.jpg";
+import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
+import NotFound from "../../assets/images/not.jpg";
 import { useStyles } from "./styles";
 
 export default function Index({ result }) {
@@ -31,7 +32,7 @@ export default function Index({ result }) {
               <CardMedia
                 className={classes.media}
                 component="img"
-                image={teste}
+                image={NotFound}
               />
             )}
           </Grid>

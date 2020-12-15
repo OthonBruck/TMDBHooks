@@ -1,11 +1,12 @@
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import React, { useEffect, useState } from "react";
-import teste from "../../assets/images/not.jpg";
+import NotFound from "../../assets/images/not.jpg";
 import { usePesquisaContext } from "../../context/PesquisaContext";
 import api from "../../services/api";
 import TemporadaCard from "../TemporadaCard/index";
 import { useStyles } from "./styles";
+import Formatters from "../../utils/formatters";
 
 export default function Index({ match }) {
   const classes = useStyles();
@@ -42,7 +43,7 @@ export default function Index({ match }) {
                 alt={dado.name}
               />
             ) : (
-              <img height="550px" src={teste} alt="Imagem não encontrada" />
+              <img height="550px" src={NotFound} alt="Imagem não encontrada" />
             )}
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
@@ -57,7 +58,9 @@ export default function Index({ match }) {
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             {dado.first_air_date !== null ? (
-              <h4>Primeira vez ao ar: {dado.first_air_date}</h4>
+              <h4>
+                Primeira vez ao ar: {Formatters.formatDate(dado.first_air_date)}
+              </h4>
             ) : (
               <h4>Primeira vez ao ar: Não há informações de data</h4>
             )}

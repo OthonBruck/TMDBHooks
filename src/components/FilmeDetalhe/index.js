@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
 import Button from "@material-ui/core/Button";
-import { Grid } from "@material-ui/core";
-import teste from "../../assets/images/not.jpg";
+import Grid from "@material-ui/core/Grid";
+import NotFound from "../../assets/images/not.jpg";
 import { usePesquisaContext } from "../../context/PesquisaContext";
 import { useStyles } from "./styles";
+import Formatters from "../../utils/formatters";
 
 export default function Index({ match }) {
   const classes = useStyles();
@@ -43,7 +44,7 @@ export default function Index({ match }) {
               alt={dado.name}
             />
           ) : (
-            <img height="550px" src={teste} alt="Imagem não encontrada" />
+            <img height="550px" src={NotFound} alt="Imagem não encontrada" />
           )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
@@ -58,7 +59,9 @@ export default function Index({ match }) {
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           {dado.release_date !== "" ? (
-            <h4>Data de Lançamento: {dado.release_date}</h4>
+            <h4>
+              Data de Lançamento: {Formatters.formatDate(dado.release_date)}
+            </h4>
           ) : (
             <h4>Data de Lançamento: Não há informações de data</h4>
           )}

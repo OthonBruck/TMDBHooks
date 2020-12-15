@@ -1,11 +1,12 @@
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
-import teste from "../../assets/images/not.jpg";
+import NotFound from "../../assets/images/not.jpg";
 import { usePesquisaContext } from "../../context/PesquisaContext";
 import { useStyles } from "./styles";
+import Formatters from "../../utils/formatters";
 
 export default function Index({ match }) {
   const {
@@ -44,7 +45,7 @@ export default function Index({ match }) {
               alt={dado.name}
             />
           ) : (
-            <img height="500px" src={teste} alt="Imagem não encontrada" />
+            <img height="500px" src={NotFound} alt="Imagem não encontrada" />
           )}
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
@@ -56,7 +57,7 @@ export default function Index({ match }) {
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           {dado.birthday !== null ? (
-            <h4>Data de Aniversario: {dado.birthday}</h4>
+            <h4>Data de Aniversario: {Formatters.formatDate(dado.birthday)}</h4>
           ) : (
             <h4>Data de Aniversario: Sem informações de data</h4>
           )}
