@@ -32,7 +32,7 @@ export default function Index() {
               to="/"
               className={classes.link}
             >
-              Trending
+              Trendingg
             </Link>
             <Link
               variant="button"
