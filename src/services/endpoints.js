@@ -5,4 +5,5 @@ export const endpoints = {
   searchPeople: "search/person?api_key=" + apikey + "&language=pt-BR&query=",
   searchMovie: "search/movie?api_key=" + apikey + "&language=pt-BR&query=",
   searchTV: "search/tv?api_key=" + apikey + "&language=pt-BR&page=1&query=",
+  trendingAll: "trending/all/day?api_key=" + apikey,
 };

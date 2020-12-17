@@ -29,8 +29,6 @@ export default function Index({ match }) {
     };
     fetchItem();
   }, [match.params.id]);
-
-  console.log();
   return (
     <div className={classes.container}>
       <Grid container spacing={0} className={classes.gridContainer}>
@@ -38,7 +36,7 @@ export default function Index({ match }) {
           <h1>{dado.name}</h1>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          {dado.profile_path !== null ? (
+          {dado.profile_path && dado.profile_path !== null ? (
             <img
               height="500px"
               src={"https://image.tmdb.org/t/p/original" + dado.profile_path}

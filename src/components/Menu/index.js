@@ -9,7 +9,7 @@ export default function Index() {
   const classes = useStyles();
 
   return (
-    <div className={classes.lista}>
+    <div>
       <AppBar
         position="static"
         color="default"
@@ -32,7 +32,7 @@ export default function Index() {
               to="/"
               className={classes.link}
             >
-              Trendingg
+              Trending
             </Link>
             <Link
               variant="button"

@@ -5,5 +5,9 @@ import { usePesquisaContext } from "../../context/PesquisaContext";
 export default function Index() {
   const { favoritos } = usePesquisaContext();
 
-  return <CardWrapper lista={favoritos} />;
+  return (
+    <div>
+      <CardWrapper lista={favoritos} />
+    </div>
+  );
 }

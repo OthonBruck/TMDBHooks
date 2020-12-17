@@ -9,10 +9,22 @@ const initialState = [];
 export default function PesquisaContextProvider({ children }) {
   const [pesquisa, setPesquisa] = useState(initialState);
   const [favoritos, setFavorito] = useState(initialState);
+  const [dado, setDado] = useState(initialState);
+  const [page, setPage] = useState();
 
   function adicionarFavorito(favorito) {
     setFavorito((prevState) => [favorito, ...prevState]);
   }
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      const response = await api.get(
+        "https://api.themoviedb.org/3/trending/all/day?api_key=d61ca0998c8a152c6556e310a4a8e4db"
+      );
+      setDado(response.data.results);
+    };
+    fetchItem();
+  }, []);
 
   function removerFavorito(index) {
     const newFavorito = favoritos.filter((id) => id.id !== index);
@@ -38,7 +50,13 @@ export default function PesquisaContextProvider({ children }) {
         const response = await api.get(endpoints.searchMovie + dado.pesquisa);
         setPesquisa(response.data.results);
       } else if (dado.tipo === "pessoa") {
-        const response = await api.get(endpoints.searchPeople + dado.pesquisa);
+        const response = await api.get(
+          endpoints.searchPeople +
+            dado.pesquisa +
+            "&page=" +
+            page +
+            "&include_adult=false"
+        );
         setPesquisa(response.data.results);
       } else if (dado.tipo === "serie") {
         const response = await api.get(endpoints.searchTV + dado.pesquisa);
@@ -58,6 +76,9 @@ export default function PesquisaContextProvider({ children }) {
         removerFavorito,
         favoritos,
         pesquisa,
+        dado,
+        page,
+        setPage,
       }}
     >
       {children}
@@ -73,6 +94,9 @@ export function usePesquisaContext() {
     removerFavorito,
     favoritos,
     pesquisa,
+    dado,
+    page,
+    setPage,
   } = useContext(PesquisaContext);
 
   return {
@@ -82,5 +106,8 @@ export function usePesquisaContext() {
     removerFavorito,
     favoritos,
     pesquisa,
+    dado,
+    page,
+    setPage,
   };
 }
