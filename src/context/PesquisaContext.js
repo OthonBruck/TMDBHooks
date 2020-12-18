@@ -10,7 +10,7 @@ export default function PesquisaContextProvider({ children }) {
   const [pesquisa, setPesquisa] = useState(initialState);
   const [favoritos, setFavorito] = useState(initialState);
   const [dado, setDado] = useState(initialState);
-  const [page, setPage] = useState();
+  const [page, setPage] = useState(3);
 
   function adicionarFavorito(favorito) {
     setFavorito((prevState) => [favorito, ...prevState]);

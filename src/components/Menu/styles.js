@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     borderBottom: "1px solid #3C3C3C",
-    background: "#212121",
+    background: "#242526",
     color: "white",
   },
   toolbar: {
