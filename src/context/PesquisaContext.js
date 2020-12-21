@@ -8,13 +8,8 @@ const initialState = [];
 
 export default function PesquisaContextProvider({ children }) {
   const [pesquisa, setPesquisa] = useState(initialState);
-  const [favoritos, setFavorito] = useState(initialState);
   const [dado, setDado] = useState(initialState);
-  const [page, setPage] = useState(3);
-
-  function adicionarFavorito(favorito) {
-    setFavorito((prevState) => [favorito, ...prevState]);
-  }
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -25,24 +20,6 @@ export default function PesquisaContextProvider({ children }) {
     };
     fetchItem();
   }, []);
-
-  function removerFavorito(index) {
-    const newFavorito = favoritos.filter((id) => id.id !== index);
-    setFavorito(newFavorito);
-  }
-
-  useEffect(() => {
-    const dados = JSON.parse(localStorage.getItem("favorito"));
-    if (dados === null) {
-      setFavorito(initialState);
-    } else {
-      setFavorito(dados);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("favorito", JSON.stringify(favoritos));
-  }, [favoritos]);
 
   async function listarPesquisa(dado) {
     try {
@@ -71,10 +48,6 @@ export default function PesquisaContextProvider({ children }) {
     <PesquisaContext.Provider
       value={{
         listarPesquisa,
-        adicionarFavorito,
-        setFavorito,
-        removerFavorito,
-        favoritos,
         pesquisa,
         dado,
         page,
@@ -87,24 +60,12 @@ export default function PesquisaContextProvider({ children }) {
 }
 
 export function usePesquisaContext() {
-  const {
-    listarPesquisa,
-    adicionarFavorito,
-    setFavorito,
-    removerFavorito,
-    favoritos,
-    pesquisa,
-    dado,
-    page,
-    setPage,
-  } = useContext(PesquisaContext);
+  const { listarPesquisa, pesquisa, dado, page, setPage } = useContext(
+    PesquisaContext
+  );
 
   return {
     listarPesquisa,
-    adicionarFavorito,
-    setFavorito,
-    removerFavorito,
-    favoritos,
     pesquisa,
     dado,
     page,

@@ -12,6 +12,7 @@ import Errormessage from "../Error/index";
 import FieldRadio from "../FieldRadio/index";
 import FieldInput from "../FieldInput/index";
 import CardWrapper from "../CardWrapper/index";
+import Menu from "../../components/Menu/index";
 
 export const Index = () => {
   const onSubmit = async (dado) => {
@@ -31,6 +32,7 @@ export const Index = () => {
 
   return (
     <div>
+      <Menu />
       <FormProvider {...methods}>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container className={classes.Grid} spacing={3}>

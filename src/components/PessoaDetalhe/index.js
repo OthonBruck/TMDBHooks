@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import api from "../../services/api";
 import NotFound from "../../assets/images/not.jpg";
-import { usePesquisaContext } from "../../context/PesquisaContext";
+import { useFavoritoContext } from "../../context/FavoritoContext";
 import { useStyles } from "./styles";
 import Formatters from "../../utils/formatters";
 
@@ -13,7 +13,7 @@ export default function Index({ match }) {
     adicionarFavorito,
     removerFavorito,
     favoritos,
-  } = usePesquisaContext();
+  } = useFavoritoContext();
 
   const classes = useStyles();
   const [dado, setDado] = useState({});
@@ -29,6 +29,7 @@ export default function Index({ match }) {
     };
     fetchItem();
   }, [match.params.id]);
+
   return (
     <div className={classes.container}>
       <Grid container spacing={0} className={classes.gridContainer}>
