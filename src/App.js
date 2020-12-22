@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./components/Menu/index";
 import FavoritoContextProvider from "./context/FavoritoContext";
 import PesquisaContextProvider from "./context/PesquisaContext";
 import Routes from "./routes/index";

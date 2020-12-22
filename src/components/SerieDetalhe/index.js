@@ -1,21 +1,15 @@
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import React, { useEffect, useState } from "react";
 import NotFound from "../../assets/images/not.jpg";
-import { usePesquisaContext } from "../../context/PesquisaContext";
 import api from "../../services/api";
+import Formatters from "../../utils/formatters";
+import ButtonFavorite from "../ButtonFavorite/index";
 import TemporadaCard from "../TemporadaCard/index";
 import { useStyles } from "./styles";
-import Formatters from "../../utils/formatters";
 
 export default function Index({ match }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
-  const {
-    favoritos,
-    adicionarFavorito,
-    removerFavorito,
-  } = usePesquisaContext();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -28,6 +22,7 @@ export default function Index({ match }) {
     };
     fetchItem();
   }, [match.params.id]);
+
   return (
     <div>
       <div className={classes.container}>
@@ -76,23 +71,7 @@ export default function Index({ match }) {
             <h4>Media de Votos: {dado.vote_average}</h4>
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
-            {favoritos.find((dados) => dados.id === dado.id) !== undefined ? (
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => removerFavorito(dado.id)}
-              >
-                Remover Favorito
-              </Button>
-            ) : (
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => adicionarFavorito(dado)}
-              >
-                Adicionar Favorito
-              </Button>
-            )}
+            <ButtonFavorite data={dado} />
           </Grid>
         </Grid>
       </div>

@@ -1,18 +1,14 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
-import useStyles from "./styles";
-import Button from "@material-ui/core/Button";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { usePesquisaContext } from "../../context/PesquisaContext";
-
-import schema from "./schema";
-import { yupResolver } from "@hookform/resolvers/yup";
-
 import Errormessage from "../Error/index";
-import FieldRadio from "../FieldRadio/index";
 import FieldInput from "../FieldInput/index";
-import CardWrapper from "../CardWrapper/index";
-import Menu from "../../components/Menu/index";
+import FieldRadio from "../FieldRadio/index";
+import schema from "./schema";
+import useStyles from "./styles";
 
 export const Index = () => {
   const onSubmit = async (dado) => {
@@ -28,11 +24,10 @@ export const Index = () => {
 
   const { handleSubmit, errors } = methods;
 
-  const { listarPesquisa, pesquisa } = usePesquisaContext();
+  const { listarPesquisa } = usePesquisaContext();
 
   return (
     <div>
-      <Menu />
       <FormProvider {...methods}>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container className={classes.Grid} spacing={3}>
@@ -61,7 +56,6 @@ export const Index = () => {
           </Grid>
         </form>
       </FormProvider>
-      <CardWrapper lista={pesquisa} />
     </div>
   );
 };

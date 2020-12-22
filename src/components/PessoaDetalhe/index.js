@@ -1,20 +1,12 @@
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import api from "../../services/api";
+import React, { useEffect, useState } from "react";
 import NotFound from "../../assets/images/not.jpg";
-import { useFavoritoContext } from "../../context/FavoritoContext";
-import { useStyles } from "./styles";
+import api from "../../services/api";
 import Formatters from "../../utils/formatters";
+import ButtonFavorite from "../ButtonFavorite/index";
+import { useStyles } from "./styles";
 
 export default function Index({ match }) {
-  const {
-    adicionarFavorito,
-    removerFavorito,
-    favoritos,
-  } = useFavoritoContext();
-
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
@@ -72,23 +64,7 @@ export default function Index({ match }) {
           <h4>Popularidade: {dado.popularity}</h4>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          {favoritos.find((dados) => dados.id === dado.id) !== undefined ? (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => removerFavorito(dado.id)}
-            >
-              Remover Favorito
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => adicionarFavorito(dado)}
-            >
-              Adicionar Favorito
-            </Button>
-          )}
+          <ButtonFavorite data={dado} />
         </Grid>
       </Grid>
     </div>
