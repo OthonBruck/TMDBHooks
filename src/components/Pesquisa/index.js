@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { usePesquisaContext } from "../../context/PesquisaContext";
-import Errormessage from "../Error/index";
+import ErrorMessage from "../Error/ErrorMessage/index";
 import FieldInput from "../FieldInput/index";
 import FieldRadio from "../FieldRadio/index";
 import schema from "./schema";
@@ -43,7 +43,7 @@ export const Index = () => {
               />
             </Grid>
             <Grid item xs={12} className={classes.gridItem}>
-              <Errormessage errors={errors} />
+              <ErrorMessage errors={errors} />
             </Grid>
             <Grid item xs={12} className={classes.gridItem}>
               <FieldRadio />

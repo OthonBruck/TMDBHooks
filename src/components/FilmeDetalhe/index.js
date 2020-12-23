@@ -5,6 +5,7 @@ import api from "../../services/api";
 import Formatters from "../../utils/formatters";
 import ButtonFavorite from "../ButtonFavorite/index";
 import { useStyles } from "./styles";
+import { endpoints } from "../../services/endpoints";
 
 export default function Index({ match }) {
   const classes = useStyles();
@@ -12,12 +13,14 @@ export default function Index({ match }) {
 
   useEffect(() => {
     const fetchItem = async () => {
-      const response = await api.get(
-        "https://api.themoviedb.org/3/movie/" +
-          match.params.id +
-          "?api_key=d61ca0998c8a152c6556e310a4a8e4db&language=pt-BR"
-      );
-      setDado(response.data);
+      try {
+        const response = await api.get(
+          endpoints.movie + match.params.id + endpoints.apiTotal
+        );
+        setDado(response.data);
+      } catch (error) {
+        console.log("fufu");
+      }
     };
     fetchItem();
   }, [match.params.id]);

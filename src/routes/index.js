@@ -6,6 +6,7 @@ import Pessoa from "../pages/Detalhes/Pessoa/index";
 import Serie from "../pages/Detalhes/Serie/index";
 import Favorito from "../pages/Favoritos/index";
 import Pesquisa from "../pages/Pesquisa/index";
+import Error from "../pages/Error/index";
 
 export default function Routes() {
   return (
@@ -18,6 +19,7 @@ export default function Routes() {
           <Route path="/pesquisa/pessoa/:id" component={Pessoa} />
           <Route path="/pesquisa/filme/:id" component={Filme} />
           <Route path="/pesquisa/serie/:id" component={Serie} />
+          <Route path="*" component={Error} />
         </Switch>
       </Router>
     </div>

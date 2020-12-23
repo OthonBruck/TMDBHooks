@@ -9,39 +9,35 @@ const initialState = [];
 export default function PesquisaContextProvider({ children }) {
   const [pesquisa, setPesquisa] = useState(initialState);
   const [dado, setDado] = useState(initialState);
-  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchItem = async () => {
-      const response = await api.get(
-        "https://api.themoviedb.org/3/trending/all/day?api_key=d61ca0998c8a152c6556e310a4a8e4db"
-      );
+      const response = await api.get(endpoints.trendingAll);
       setDado(response.data.results);
     };
     fetchItem();
   }, []);
 
   async function listarPesquisa(dado) {
+    setLoading(true);
     try {
       if (dado.tipo === "filme") {
         const response = await api.get(endpoints.searchMovie + dado.pesquisa);
         setPesquisa(response.data.results);
       } else if (dado.tipo === "pessoa") {
         const response = await api.get(
-          endpoints.searchPeople +
-            dado.pesquisa +
-            "&page=" +
-            page +
-            "&include_adult=false"
+          endpoints.searchPeople + dado.pesquisa + "&page=&include_adult=false"
         );
         setPesquisa(response.data.results);
       } else if (dado.tipo === "serie") {
         const response = await api.get(endpoints.searchTV + dado.pesquisa);
         setPesquisa(response.data.results);
       }
-    } catch (err) {
-      console.log("fufu");
-    }
+    } catch (err) {}
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }
 
   return (
@@ -50,8 +46,7 @@ export default function PesquisaContextProvider({ children }) {
         listarPesquisa,
         pesquisa,
         dado,
-        page,
-        setPage,
+        loading,
       }}
     >
       {children}
@@ -60,7 +55,7 @@ export default function PesquisaContextProvider({ children }) {
 }
 
 export function usePesquisaContext() {
-  const { listarPesquisa, pesquisa, dado, page, setPage } = useContext(
+  const { listarPesquisa, pesquisa, dado, loading } = useContext(
     PesquisaContext
   );
 
@@ -68,7 +63,6 @@ export function usePesquisaContext() {
     listarPesquisa,
     pesquisa,
     dado,
-    page,
-    setPage,
+    loading,
   };
 }
