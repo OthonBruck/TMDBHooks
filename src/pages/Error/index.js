@@ -1,11 +1,13 @@
 import React from "react";
-import ButtonReturn from "../../components/ButtonReturn/index";
+import ErrorComponent from "../../components/Error/ErrorComponent";
 import Menu from "../../components/Menu/index";
 export default function index() {
   return (
     <div>
       <Menu />
-      <ButtonReturn link={``} />
+      <ErrorComponent
+        mensagem={"Error: Não foi possivel encontrar esta página"}
+      />
     </div>
   );
 }

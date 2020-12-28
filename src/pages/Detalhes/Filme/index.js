@@ -6,9 +6,9 @@ export default function FilmePage({ match }) {
   return (
     <div>
       <Menu />
-      {match.path === "/favoritos/pessoa/:id" ? (
+      {match.path === "/favoritos/filme/:id" ? (
         <FilmeDetalhe match={match} link={"/favoritos"} />
-      ) : match.path === "/pesquisa/pessoa/:id" ? (
+      ) : match.path === "/pesquisa/filme/:id" ? (
         <FilmeDetalhe match={match} link={"/pesquisa"} />
       ) : (
         <FilmeDetalhe match={match} link={"/"} />
