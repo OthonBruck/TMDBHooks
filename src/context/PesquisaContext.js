@@ -34,6 +34,7 @@ export default function PesquisaContextProvider({ children }) {
         const response = await api.get(endpoints.searchTV + dado.pesquisa);
         setPesquisa(response.data.results);
       }
+      console.log(pesquisa);
     } catch (err) {}
     setTimeout(() => {
       setLoading(false);
