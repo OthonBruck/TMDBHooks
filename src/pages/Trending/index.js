@@ -8,7 +8,7 @@ export default function Index() {
   return (
     <div>
       <Menu />
-      <CardWrapper lista={dado} />
+      <CardWrapper lista={dado} link={""} />
     </div>
   );
 }

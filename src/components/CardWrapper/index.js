@@ -9,7 +9,7 @@ import { useStyles } from "./styles";
 
 //#endregion
 
-export default function Index({ lista }) {
+export default function CardWrapper({ lista, link }) {
   const classes = useStyles();
 
   return (
@@ -18,28 +18,19 @@ export default function Index({ lista }) {
         {lista.map((result) => {
           return result.first_air_date ? (
             <div className={classes.items} key={result.id}>
-              <Link
-                className={classes.link}
-                to={`/pesquisa/serie/${result.id}`}
-              >
+              <Link className={classes.link} to={`${link}/serie/${result.id}`}>
                 <SerieCard key={result.id} result={result} />
               </Link>
             </div>
           ) : result.known_for_department ? (
             <div className={classes.items} key={result.id}>
-              <Link
-                className={classes.link}
-                to={`/pesquisa/pessoa/${result.id}`}
-              >
+              <Link className={classes.link} to={`${link}/pessoa/${result.id}`}>
                 <PessoaCard key={result.id} result={result} />
               </Link>
             </div>
           ) : (
             <div className={classes.items} key={result.id}>
-              <Link
-                className={classes.link}
-                to={`/pesquisa/filme/${result.id}`}
-              >
+              <Link className={classes.link} to={`${link}/filme/${result.id}`}>
                 <FilmesCard key={result.id} result={result} />
               </Link>
             </div>

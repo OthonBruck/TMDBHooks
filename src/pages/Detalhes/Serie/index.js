@@ -6,7 +6,13 @@ export default function SeriePage({ match }) {
   return (
     <div>
       <Menu />
-      <SerieDetalhe match={match} />
+      {match.path === "/favoritos/pessoa/:id" ? (
+        <SerieDetalhe match={match} link={"/favoritos"} />
+      ) : match.path === "/pesquisa/pessoa/:id" ? (
+        <SerieDetalhe match={match} link={"/pesquisa"} />
+      ) : (
+        <SerieDetalhe match={match} link={"/"} />
+      )}
     </div>
   );
 }

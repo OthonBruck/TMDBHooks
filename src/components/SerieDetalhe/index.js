@@ -7,8 +7,9 @@ import ButtonFavorite from "../ButtonFavorite/index";
 import TemporadaCard from "../TemporadaCard/index";
 import { useStyles } from "./styles";
 import { endpoints } from "../../services/endpoints";
+import ButtonReturn from "../ButtonReturn";
 
-export default function Index({ match }) {
+export default function SerieDetalhe({ match, link }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
@@ -26,6 +27,9 @@ export default function Index({ match }) {
     <div>
       <div className={classes.container}>
         <Grid container spacing={0} className={classes.gridContainer}>
+          <Grid item xs={12}>
+            <ButtonReturn link={link} />
+          </Grid>
           <Grid item xs={12}>
             <h1>{dado.name}</h1>
           </Grid>

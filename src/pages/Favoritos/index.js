@@ -9,7 +9,7 @@ export default function Index() {
   return (
     <div>
       <Menu />
-      <CardWrapper lista={favoritos} />
+      <CardWrapper lista={favoritos} link={"/favoritos"} />
     </div>
   );
 }

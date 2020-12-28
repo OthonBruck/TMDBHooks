@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import React from "react";
 import { useFavoritoContext } from "../../context/FavoritoContext";
 
-export default function Index({ data }) {
+export default function ButtonFavorite({ data }) {
   const {
     adicionarFavorito,
     removerFavorito,

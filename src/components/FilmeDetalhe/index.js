@@ -6,10 +6,13 @@ import Formatters from "../../utils/formatters";
 import ButtonFavorite from "../ButtonFavorite/index";
 import { useStyles } from "./styles";
 import { endpoints } from "../../services/endpoints";
+import ButtonReturn from "../../components/ButtonReturn/index";
 
-export default function Index({ match }) {
+export default function FilmeDetalhe({ match, link }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
+
+  console.log(match);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -28,6 +31,9 @@ export default function Index({ match }) {
   return (
     <div className={classes.container}>
       <Grid container spacing={0} className={classes.gridContainer}>
+        <Grid item xs={12}>
+          <ButtonReturn link={link} />
+        </Grid>
         <Grid item xs={12}>
           <h1>{dado.title}</h1>
         </Grid>

@@ -1,11 +1,11 @@
 import React from "react";
+import ButtonReturn from "../../components/ButtonReturn/index";
 import Menu from "../../components/Menu/index";
-import Loading from "../../components/Loading";
 export default function index() {
   return (
     <div>
       <Menu />
-      <Loading />
+      <ButtonReturn link={``} />
     </div>
   );
 }
