@@ -7,7 +7,7 @@ const PesquisaContext = createContext();
 const initialState = [];
 
 export default function PesquisaContextProvider({ children }) {
-  const [pesquisa, setPesquisa] = useState(initialState);
+  const [pesquisa, setPesquisa] = useState(null);
   const [dado, setDado] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
@@ -34,11 +34,11 @@ export default function PesquisaContextProvider({ children }) {
         const response = await api.get(endpoints.searchTV + dado.pesquisa);
         setPesquisa(response.data.results);
       }
-      console.log(pesquisa);
     } catch (err) {}
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+    console.log(pesquisa);
   }
 
   return (

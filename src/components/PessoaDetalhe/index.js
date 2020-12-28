@@ -12,8 +12,6 @@ export default function Index({ match, link }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
-  console.log(match);
-
   useEffect(() => {
     const fetchItem = async () => {
       const response = await api.get(

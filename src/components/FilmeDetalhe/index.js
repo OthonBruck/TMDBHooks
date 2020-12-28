@@ -12,8 +12,6 @@ export default function FilmeDetalhe({ match, link }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
-  console.log(match);
-
   useEffect(() => {
     const fetchItem = async () => {
       try {

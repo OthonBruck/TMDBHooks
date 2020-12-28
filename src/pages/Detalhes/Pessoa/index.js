@@ -3,7 +3,6 @@ import Menu from "../../../components/Menu/index";
 import PessoaDetalhe from "../../../components/PessoaDetalhe/index";
 
 export default function PessoaPage({ match }) {
-  console.log(match);
   return (
     <div>
       <Menu />
