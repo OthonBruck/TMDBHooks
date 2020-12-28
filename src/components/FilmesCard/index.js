@@ -7,11 +7,15 @@ import React from "react";
 import NotFound from "../../assets/images/not.jpg";
 import { useStyles } from "./styles";
 
-export default function Index({ result }) {
+export default function Index({ result, height, width }) {
   const classes = useStyles();
   return (
     <li key={result.id}>
-      <Card className={classes.root} variant="outlined">
+      <Card
+        className={classes.root}
+        variant="outlined"
+        style={{ width: width, height: height }}
+      >
         <CardContent>
           <Typography>Filme</Typography>
           <Grid item xs={12} className={classes.gridItem}>

@@ -23,7 +23,12 @@ export default function CardWrapper({ lista, link }) {
                   className={classes.link}
                   to={`${link}/serie/${result.id}`}
                 >
-                  <SerieCard key={result.id} result={result} />
+                  <SerieCard
+                    key={result.id}
+                    result={result}
+                    width={400}
+                    height={545}
+                  />
                 </Link>
               </div>
             ) : result.known_for_department ? (
@@ -32,7 +37,12 @@ export default function CardWrapper({ lista, link }) {
                   className={classes.link}
                   to={`${link}/pessoa/${result.id}`}
                 >
-                  <PessoaCard key={result.id} result={result} />
+                  <PessoaCard
+                    key={result.id}
+                    result={result}
+                    width={400}
+                    height={545}
+                  />
                 </Link>
               </div>
             ) : (
@@ -41,7 +51,12 @@ export default function CardWrapper({ lista, link }) {
                   className={classes.link}
                   to={`${link}/filme/${result.id}`}
                 >
-                  <FilmesCard key={result.id} result={result} />
+                  <FilmesCard
+                    key={result.id}
+                    result={result}
+                    width={400}
+                    height={545}
+                  />
                 </Link>
               </div>
             );

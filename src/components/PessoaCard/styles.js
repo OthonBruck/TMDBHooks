@@ -2,8 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    width: "400px",
-    height: 545,
     flexWrap: "wrap",
     background: "#424242",
     color: "white",

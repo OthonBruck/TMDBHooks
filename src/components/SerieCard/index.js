@@ -7,11 +7,15 @@ import Grid from "@material-ui/core/Grid";
 import NotFound from "../../assets/images/not.jpg";
 import { useStyles } from "./styles";
 
-export default function Index({ result }) {
+export default function SerieCard({ result, height, width }) {
   const classes = useStyles();
   return (
     <li key={result.id}>
-      <Card className={classes.root} variant="outlined">
+      <Card
+        className={classes.root}
+        variant="outlined"
+        style={{ width: width, height: height }}
+      >
         <CardContent>
           <Typography>Serie</Typography>
           <Grid item xs={12} className={classes.gridItem}>
