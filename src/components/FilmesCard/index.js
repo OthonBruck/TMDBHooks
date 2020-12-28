@@ -10,7 +10,7 @@ import { useStyles } from "./styles";
 export default function Index({ result }) {
   const classes = useStyles();
   return (
-    <li>
+    <li key={result.id}>
       <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography>Filme</Typography>

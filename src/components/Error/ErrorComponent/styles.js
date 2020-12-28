@@ -1,9 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   Grid: {
     backgroundColor: "#F44336",
     padding: theme.spacing(1),
@@ -13,9 +10,8 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 26,
     width: 500,
     color: "#FFFFFF",
-    fontSize: 17,
   },
-  form: {
+  centralizar: {
     marginTop: "15px",
     display: "flex",
     justifyContent: "center",
@@ -25,25 +21,6 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    "& label.Mui-focused": {
-      color: "#FFFFFF",
-    },
-    "& label": {
-      color: "#FFFFFF",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#FFFFFF",
-    },
-    "& .MuiInput-underline:before": {
-      borderBottomColor: "#FFFFFF",
-    },
   },
-  radio: {
-    color: "black",
-    "&$checked": {
-      color: "#FFFFFF",
-    },
-  },
-  checked: {},
 }));
 export default useStyles;

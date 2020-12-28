@@ -17,7 +17,7 @@ export default function Index({ lista }) {
       <ul className={classes.lista}>
         {lista.map((result) => {
           return result.first_air_date ? (
-            <div className={classes.items}>
+            <div className={classes.items} key={result.id}>
               <Link
                 className={classes.link}
                 to={`/pesquisa/serie/${result.id}`}
@@ -26,7 +26,7 @@ export default function Index({ lista }) {
               </Link>
             </div>
           ) : result.known_for_department ? (
-            <div className={classes.items}>
+            <div className={classes.items} key={result.id}>
               <Link
                 className={classes.link}
                 to={`/pesquisa/pessoa/${result.id}`}
@@ -35,7 +35,7 @@ export default function Index({ lista }) {
               </Link>
             </div>
           ) : (
-            <div className={classes.items}>
+            <div className={classes.items} key={result.id}>
               <Link
                 className={classes.link}
                 to={`/pesquisa/filme/${result.id}`}

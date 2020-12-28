@@ -5,7 +5,7 @@ import { useStyles } from "./styles";
 export default function ErrorComponent({ mensagem }) {
   const classes = useStyles();
   return (
-    <div className={classes.form}>
+    <div className={classes.centralizar}>
       <Grid container className={classes.Grid} spacing={3}>
         <Grid item xs={12} className={classes.gridItem}>
           <Typography>{mensagem}</Typography>

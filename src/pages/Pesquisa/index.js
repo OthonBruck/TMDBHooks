@@ -14,8 +14,8 @@ export default function PesquisaPage() {
       <Pesquisa />
       {loading ? (
         <Loading />
-      ) : pesquisa.length === 0 ? (
-        <ErrorComponent mensagem={"Não foi possivel achar dados"} />
+      ) : pesquisa && pesquisa.length === 0 ? (
+        <ErrorComponent mensagem={"Não foi possível achar dados"} />
       ) : (
         <CardWrapper lista={pesquisa} />
       )}
