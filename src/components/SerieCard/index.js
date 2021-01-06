@@ -6,6 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import NotFound from "../../assets/images/not.jpg";
 import { useStyles } from "./styles";
+import { endpoints } from "../../services/endpoints";
 
 export default function SerieCard({ result, height, width }) {
   const classes = useStyles();
@@ -28,9 +29,7 @@ export default function SerieCard({ result, height, width }) {
               <CardMedia
                 className={classes.media}
                 component="img"
-                image={
-                  "https://image.tmdb.org/t/p/original" + result.poster_path
-                }
+                image={endpoints.image + result.poster_path}
               />
             ) : (
               <CardMedia

@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import NotFound from "../../assets/images/not.jpg";
 import { useStyles } from "./styles";
+import { endpoints } from "../../services/endpoints";
 
 export default function Index({ result, height, width }) {
   const classes = useStyles();
@@ -28,9 +29,7 @@ export default function Index({ result, height, width }) {
               <CardMedia
                 className={classes.media}
                 component="img"
-                image={
-                  "https://image.tmdb.org/t/p/original" + result.poster_path
-                }
+                image={endpoints.image + result.poster_path}
               />
             ) : (
               <CardMedia

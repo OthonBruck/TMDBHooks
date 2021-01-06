@@ -19,9 +19,7 @@ export default function FilmeDetalhe({ match, link }) {
           endpoints.movie + match.params.id + endpoints.apiTotal
         );
         setDado(response.data);
-      } catch (error) {
-        console.log("fufu");
-      }
+      } catch (error) {}
     };
     fetchItem();
   }, [match.params.id]);

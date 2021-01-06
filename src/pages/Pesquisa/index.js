@@ -5,6 +5,7 @@ import { usePesquisaContext } from "../../context/PesquisaContext";
 import CardWrapper from "../../components/CardWrapper/index";
 import Loading from "../../components/Loading/index";
 import ErrorComponent from "../../components/Error/ErrorComponent/index";
+import Pagination from "../../components/Pagination/index";
 
 export default function PesquisaPage() {
   const { pesquisa, loading } = usePesquisaContext();
@@ -14,11 +15,14 @@ export default function PesquisaPage() {
       <Pesquisa />
       {loading ? (
         <Loading />
+      ) : pesquisa && pesquisa.length !== 0 ? (
+        <div>
+          <CardWrapper lista={pesquisa} link={"/pesquisa"} />
+          <Pagination />
+        </div>
       ) : pesquisa && pesquisa.length === 0 ? (
         <ErrorComponent mensagem={"Não foi possível achar dados"} />
-      ) : (
-        <CardWrapper lista={pesquisa} link={"/pesquisa"} />
-      )}
+      ) : null}
     </div>
   );
 }

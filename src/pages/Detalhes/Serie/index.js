@@ -3,7 +3,6 @@ import Menu from "../../../components/Menu/index";
 import SerieDetalhe from "../../../components/SerieDetalhe/index";
 
 export default function SeriePage({ match }) {
-  console.log(match);
   return (
     <div>
       <Menu />
