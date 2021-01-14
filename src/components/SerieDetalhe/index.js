@@ -8,6 +8,7 @@ import TemporadaCard from "../TemporadaCard/index";
 import { useStyles } from "./styles";
 import { endpoints } from "../../services/endpoints";
 import ButtonReturn from "../ButtonReturn";
+import ImageDetalhe from "../ImageDetalhe";
 
 export default function SerieDetalhe({ match, link }) {
   const classes = useStyles();
@@ -34,22 +35,14 @@ export default function SerieDetalhe({ match, link }) {
             <h1>{dado.name}</h1>
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
-            {dado.poster_path !== null ? (
-              <img
-                height="550px"
-                src={"https://image.tmdb.org/t/p/original" + dado.poster_path}
-                alt={dado.name}
-              />
-            ) : (
-              <img height="550px" src={NotFound} alt="Imagem não encontrada" />
-            )}
+            <ImageDetalhe image={dado.poster_path} height="550px" />
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             {dado.genres && dado.genres.length === 0 ? (
               <h4>Generos: Não há informações de generos</h4>
             ) : (
               <h4>
-                Generos:{" "}
+                Generos:
                 {dado.genres && dado.genres.map((a) => a.name).join(", ")}
               </h4>
             )}

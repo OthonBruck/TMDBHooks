@@ -4,7 +4,6 @@ import { usePesquisaContext } from "../../context/PesquisaContext";
 
 export default function Pagination() {
   const { page, setPage } = usePesquisaContext();
-  console.log(page);
   return (
     <div>
       <Button variant="contained" onClick={() => setPage(page - 1)}>

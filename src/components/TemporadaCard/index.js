@@ -1,14 +1,13 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import NotFound from "../../assets/images/not.jpg";
 import Formatters from "../../utils/formatters";
+import MediaCard from "../MediaCard";
 import { useStyles } from "./styles";
 
-export default function Index({ a }) {
+export default function TemporadaCard({ a }) {
   const classes = useStyles();
   return (
     <div>
@@ -23,21 +22,7 @@ export default function Index({ a }) {
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.foto}>
-                {a.poster_path !== null ? (
-                  <CardMedia
-                    className={classes.media}
-                    component="img"
-                    image={
-                      "https://image.tmdb.org/t/p/original" + a.poster_path
-                    }
-                  />
-                ) : (
-                  <CardMedia
-                    className={classes.media}
-                    component="img"
-                    image={NotFound}
-                  />
-                )}
+                <MediaCard image={a.poster_path} />
               </Grid>
               <Grid item xs={12} className={classes.gridCard}>
                 <Typography variant="body2" component="p">

@@ -10,7 +10,7 @@ import FieldRadio from "../FieldRadio/index";
 import schema from "./schema";
 import useStyles from "./styles";
 
-export const Index = () => {
+export const Pesquisa = () => {
   const onSubmit = async (dado) => {
     listarPesquisa(dado);
   };
@@ -60,4 +60,4 @@ export const Index = () => {
   );
 };
 
-export default Index;
+export default Pesquisa;

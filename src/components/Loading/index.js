@@ -2,7 +2,7 @@ import React from "react";
 import Loading from "../../assets/images/loading.gif";
 import { useStyles } from "./styles";
 
-export default function Index() {
+export default function Load() {
   const classes = useStyles();
   return (
     <div className={classes.center}>

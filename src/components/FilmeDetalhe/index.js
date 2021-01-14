@@ -7,6 +7,7 @@ import ButtonFavorite from "../ButtonFavorite/index";
 import { useStyles } from "./styles";
 import { endpoints } from "../../services/endpoints";
 import ButtonReturn from "../../components/ButtonReturn/index";
+import ImageDetalhe from "../ImageDetalhe";
 
 export default function FilmeDetalhe({ match, link }) {
   const classes = useStyles();
@@ -34,15 +35,7 @@ export default function FilmeDetalhe({ match, link }) {
           <h1>{dado.title}</h1>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          {dado.poster_path !== null ? (
-            <img
-              height="550px"
-              src={"https://image.tmdb.org/t/p/original" + dado.poster_path}
-              alt={dado.name}
-            />
-          ) : (
-            <img height="550px" src={NotFound} alt="Imagem não encontrada" />
-          )}
+          <ImageDetalhe image={dado.poster_path} height="550px" />
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           {dado.genres && dado.genres.length === 0 ? (

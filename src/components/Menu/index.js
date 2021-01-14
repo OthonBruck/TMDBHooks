@@ -5,7 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useStyles } from "./styles";
 
-export default function Index() {
+export default function Menu() {
   const classes = useStyles();
 
   return (

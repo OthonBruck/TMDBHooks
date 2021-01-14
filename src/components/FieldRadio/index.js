@@ -4,7 +4,7 @@ import { CustomizedRadio } from "./styles";
 
 const initialState = "pessoa";
 
-export default function Index() {
+export default function FieldRadio() {
   const [selectedValue, setSelectedValue] = useState(initialState);
 
   const handleChange = (event) => {

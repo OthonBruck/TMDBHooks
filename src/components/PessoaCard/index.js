@@ -1,51 +1,36 @@
-import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import NotFound from "../../assets/images/not.jpg";
+import MediaCard from "../MediaCard/index";
 import { useStyles } from "./styles";
-import { endpoints } from "../../services/endpoints";
 
 export default function PessoaCard({ result, height, width }) {
   const classes = useStyles();
+
   return (
-    <li key={result.id}>
-      <Card
-        className={classes.root}
-        variant="outlined"
-        style={{ width: width, height: height }}
-      >
-        <CardContent>
-          <Typography>Pessoa</Typography>
-          <Grid item xs={12} className={classes.gridItem}>
-            <Typography variant="h5" component="h2">
-              {result.name}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} className={classes.foto}>
-            {result.profile_path !== null ? (
-              <CardMedia
-                className={classes.media}
-                component="img"
-                image={endpoints.image + result.profile_path}
-              />
-            ) : (
-              <CardMedia
-                className={classes.media}
-                component="img"
-                image={NotFound}
-              />
-            )}
-          </Grid>
-          <Grid item xs={12} className={classes.gridItem}>
-            <Typography variant="body2" component="p">
-              Popularidade: {result.popularity}
-            </Typography>
-          </Grid>
-        </CardContent>
-      </Card>
-    </li>
+    <div>
+      <li key={result.id}>
+        <Card className={classes.root} style={{ width: width, height: height }}>
+          <CardContent>
+            <Typography>Pessoa</Typography>
+            <Grid item xs={12} className={classes.gridItem}>
+              <Typography variant="h5" component="h2">
+                {result.name}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} className={classes.foto}>
+              <MediaCard image={result.profile_path} />
+            </Grid>
+            <Grid item xs={12} className={classes.gridItem}>
+              <Typography variant="body2" component="p">
+                Popularidade: {result.popularity}
+              </Typography>
+            </Grid>
+          </CardContent>
+        </Card>
+      </li>
+    </div>
   );
 }

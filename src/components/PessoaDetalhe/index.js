@@ -7,8 +7,9 @@ import ButtonFavorite from "../ButtonFavorite/index";
 import { useStyles } from "./styles";
 import { endpoints } from "../../services/endpoints";
 import ButtonReturn from "../ButtonReturn";
+import ImageDetalhe from "../ImageDetalhe";
 
-export default function Index({ match, link }) {
+export default function PessoaDetalhe({ match, link }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
@@ -32,15 +33,7 @@ export default function Index({ match, link }) {
           <h1>{dado.name}</h1>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
-          {dado.profile_path && dado.profile_path !== null ? (
-            <img
-              height="500px"
-              src={"https://image.tmdb.org/t/p/original" + dado.profile_path}
-              alt={dado.name}
-            />
-          ) : (
-            <img height="500px" src={NotFound} alt="Imagem não encontrada" />
-          )}
+          <ImageDetalhe image={dado.profile_path} height="500px" />
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           {dado.biography !== "" ? (

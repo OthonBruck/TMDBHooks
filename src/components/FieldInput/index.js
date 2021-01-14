@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import FieldWrapper from "../FieldWrapper/index";
 
-export default function Index({
+export default function FieldInput({
   size,
   variant,
   label,

@@ -3,7 +3,7 @@ import CardWrapper from "../../components/CardWrapper/index";
 import { useFavoritoContext } from "../../context/FavoritoContext";
 import Menu from "../../components/Menu/index";
 
-export default function Index() {
+export default function Favoritos() {
   const { favoritos } = useFavoritoContext();
 
   return (
