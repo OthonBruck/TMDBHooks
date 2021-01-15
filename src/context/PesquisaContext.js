@@ -13,6 +13,11 @@ export default function PesquisaContextProvider({ children }) {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState(initialState);
   const [tipo, setTipo] = useState();
+  const [selectedValue, setSelectedValue] = useState("person");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -37,16 +42,16 @@ export default function PesquisaContextProvider({ children }) {
     }
     async function serie() {
       const response = await api.get(
-        endpoints.searchTV + "&page=" + page + "&query=" + query
+        endpoints.searchTV + "&query=" + query + "&page=" + page
       );
       setPesquisa(response.data.results);
     }
     setLoading(true);
-    if (tipo === "filme") {
+    if (tipo === "movie") {
       movies();
-    } else if (tipo === "pessoa") {
+    } else if (tipo === "person") {
       people();
-    } else if (tipo === "serie") {
+    } else if (tipo === "tv") {
       serie();
     }
     setTimeout(() => {
@@ -58,7 +63,7 @@ export default function PesquisaContextProvider({ children }) {
   async function listarPesquisa(dado) {
     setLoading(true);
     try {
-      if (dado.tipo === "filme") {
+      if (dado.tipo === "movie") {
         const response = await api.get(
           endpoints.searchMovie + dado.pesquisa + "&page=" + page
         );
@@ -66,7 +71,7 @@ export default function PesquisaContextProvider({ children }) {
         setQuery(dado.pesquisa);
         setTipo(dado.tipo);
         setPesquisa(response.data.results);
-      } else if (dado.tipo === "pessoa") {
+      } else if (dado.tipo === "person") {
         const response = await api.get(
           endpoints.searchPeople + dado.pesquisa + "&page=" + page
         );
@@ -74,7 +79,7 @@ export default function PesquisaContextProvider({ children }) {
         setQuery(dado.pesquisa);
         setTipo(dado.tipo);
         setPesquisa(response.data.results);
-      } else if (dado.tipo === "serie") {
+      } else if (dado.tipo === "tv") {
         const response = await api.get(
           endpoints.searchTV + "&page=" + page + "&query=" + dado.pesquisa
         );
@@ -99,6 +104,8 @@ export default function PesquisaContextProvider({ children }) {
         page,
         setPage,
         query,
+        selectedValue,
+        handleChange,
       }}
     >
       {children}
@@ -115,6 +122,8 @@ export function usePesquisaContext() {
     page,
     setPage,
     query,
+    selectedValue,
+    handleChange,
   } = useContext(PesquisaContext);
 
   return {
@@ -125,5 +134,7 @@ export function usePesquisaContext() {
     page,
     setPage,
     query,
+    selectedValue,
+    handleChange,
   };
 }

@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { usePesquisaContext } from "../../context/PesquisaContext";
 import FieldWrapper from "../FieldWrapper/index";
 import { CustomizedRadio } from "./styles";
 
-const initialState = "pessoa";
-
 export default function FieldRadio() {
-  const [selectedValue, setSelectedValue] = useState(initialState);
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
+  const { selectedValue, handleChange } = usePesquisaContext();
 
   return (
     <div>
@@ -17,21 +12,21 @@ export default function FieldRadio() {
         as={
           <div>
             <CustomizedRadio
-              checked={selectedValue === "pessoa"}
+              checked={selectedValue === "person"}
               onChange={handleChange}
-              value="pessoa"
+              value="person"
             />
             <label>Pessoa</label>
             <CustomizedRadio
-              checked={selectedValue === "filme"}
+              checked={selectedValue === "movie"}
               onChange={handleChange}
-              value="filme"
+              value="movie"
             />
             <label>Filme</label>
             <CustomizedRadio
-              checked={selectedValue === "serie"}
+              checked={selectedValue === "tv"}
               onChange={handleChange}
-              value="serie"
+              value="tv"
             />
             <label>Serie</label>
           </div>

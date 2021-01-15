@@ -1,13 +1,13 @@
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect, useState } from "react";
-import NotFound from "../../assets/images/not.jpg";
 import api from "../../services/api";
-import Formatters from "../../utils/formatters";
-import ButtonFavorite from "../ButtonFavorite/index";
-import { useStyles } from "./styles";
 import { endpoints } from "../../services/endpoints";
+import ButtonFavorite from "../ButtonFavorite/index";
 import ButtonReturn from "../ButtonReturn";
+import DataDetalhe from "../DataDetalhe";
+import DescricaoDetalhe from "../DescricaoDetalhe";
 import ImageDetalhe from "../ImageDetalhe";
+import { useStyles } from "./styles";
 
 export default function PessoaDetalhe({ match, link }) {
   const classes = useStyles();
@@ -36,21 +36,13 @@ export default function PessoaDetalhe({ match, link }) {
           <ImageDetalhe image={dado.profile_path} height="500px" />
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          {dado.biography !== "" ? (
-            <h4>Biografia: {dado.biography}</h4>
-          ) : (
-            <h4>Biografia: Não há biografia</h4>
-          )}
+          <DescricaoDetalhe dado={dado.biography} text={"Biografia"} />
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          {dado.birthday !== null ? (
-            <h4>Data de Aniversario: {Formatters.formatDate(dado.birthday)}</h4>
-          ) : (
-            <h4>Data de Aniversario: Sem informações de data</h4>
-          )}
+          <DataDetalhe text={"Data de Aniversario"} dado={dado.birthday} />
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
-          {dado.place_of_birth !== null ? (
+          {dado.place_of_birth !== "" ? (
             <h4>Local de Nascimento: {dado.place_of_birth}</h4>
           ) : (
             <h4>Local de Nascimento: Sem informações de local</h4>
