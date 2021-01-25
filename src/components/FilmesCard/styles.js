@@ -10,10 +10,7 @@ export const useStyles = makeStyles(() => ({
     },
   },
   title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
+    fontSize: 21,
   },
   foto: {
     display: "flex",
@@ -22,9 +19,5 @@ export const useStyles = makeStyles(() => ({
   },
   gridItem: {
     marginTop: 3,
-  },
-  media: {
-    width: "250px",
-    height: "365px",
   },
 }));

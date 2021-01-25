@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect, useState } from "react";
 import ButtonReturn from "../../components/ButtonReturn/index";
@@ -33,7 +34,7 @@ export default function FilmeDetalhe({ match, link }) {
           <ButtonReturn link={link} />
         </Grid>
         <Grid item xs={12}>
-          <h1>{dado.title}</h1>
+          <Typography component="h1">{dado.title}</Typography>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
           <ImageDetalhe image={dado.poster_path} height="550px" />

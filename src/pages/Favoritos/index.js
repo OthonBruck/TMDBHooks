@@ -9,7 +9,12 @@ export default function Favoritos() {
   return (
     <div>
       <Menu />
-      <CardWrapper lista={favoritos} link={"/favoritos"} />
+      <CardWrapper
+        lista={favoritos}
+        link={"/favoritos"}
+        height={545}
+        width={350}
+      />
     </div>
   );
 }

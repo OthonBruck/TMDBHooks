@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   toolbar: {
-    flexWrap: "wrap",
+    flexWrap: "flex",
   },
   toolbarTitle: {
     flexGrow: 1,

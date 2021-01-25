@@ -30,30 +30,19 @@ export default function PesquisaContextProvider({ children }) {
   useEffect(() => {
     async function movies() {
       const response = await api.get(
-        endpoints.searchMovie + query + "&page=" + page
-      );
-      setPesquisa(response.data.results);
-    }
-    async function people() {
-      const response = await api.get(
-        endpoints.searchPeople + query + "&page=" + page
-      );
-      setPesquisa(response.data.results);
-    }
-    async function serie() {
-      const response = await api.get(
-        endpoints.searchTV + "&query=" + query + "&page=" + page
+        endpoints.search +
+          tipo +
+          "/" +
+          endpoints.apiTotal +
+          "&query=" +
+          query +
+          "&page=" +
+          page
       );
       setPesquisa(response.data.results);
     }
     setLoading(true);
-    if (tipo === "movie") {
-      movies();
-    } else if (tipo === "person") {
-      people();
-    } else if (tipo === "tv") {
-      serie();
-    }
+    movies();
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -63,31 +52,29 @@ export default function PesquisaContextProvider({ children }) {
   async function listarPesquisa(dado) {
     setLoading(true);
     try {
-      if (dado.tipo === "movie") {
-        const response = await api.get(
-          endpoints.searchMovie + dado.pesquisa + "&page=" + page
-        );
-        setPage(1);
-        setQuery(dado.pesquisa);
-        setTipo(dado.tipo);
-        setPesquisa(response.data.results);
-      } else if (dado.tipo === "person") {
-        const response = await api.get(
-          endpoints.searchPeople + dado.pesquisa + "&page=" + page
-        );
-        setPage(1);
-        setQuery(dado.pesquisa);
-        setTipo(dado.tipo);
-        setPesquisa(response.data.results);
-      } else if (dado.tipo === "tv") {
-        const response = await api.get(
-          endpoints.searchTV + "&page=" + page + "&query=" + dado.pesquisa
-        );
-        setPage(1);
-        setQuery(dado.pesquisa);
-        setTipo(dado.tipo);
-        setPesquisa(response.data.results);
-      }
+      const response = await api.get(
+        endpoints.search +
+          dado.tipo +
+          "/" +
+          endpoints.apiTotal +
+          "&query=" +
+          dado.pesquisa +
+          "&page=" +
+          page
+      );
+      console.log(
+        endpoints.API_URL +
+          dado.tipo +
+          "/" +
+          endpoints.API_URL +
+          dado.pesquisa +
+          "&page=" +
+          page
+      );
+      setPage(1);
+      setQuery(dado.pesquisa);
+      setTipo(dado.tipo);
+      setPesquisa(response.data.results);
     } catch (err) {}
     setTimeout(() => {
       setLoading(false);

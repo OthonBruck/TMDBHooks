@@ -8,7 +8,7 @@ export default function Trending() {
   return (
     <div>
       <Menu />
-      <CardWrapper lista={dado} link={""} />
+      <CardWrapper lista={dado} link={""} height={505} width={350} />
     </div>
   );
 }

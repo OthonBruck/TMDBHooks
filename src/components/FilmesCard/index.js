@@ -15,7 +15,7 @@ export default function FilmesCard({ result, height, width }) {
           <CardContent>
             <Typography>Filme</Typography>
             <Grid item xs={12} className={classes.gridItem}>
-              <Typography variant="h5" component="h2">
+              <Typography variant="h5" component="h2" className={classes.title}>
                 {result.title}
               </Typography>
             </Grid>

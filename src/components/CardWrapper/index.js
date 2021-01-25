@@ -9,7 +9,7 @@ import { useStyles } from "./styles";
 
 //#endregion
 
-export default function CardWrapper({ lista, link }) {
+export default function CardWrapper({ lista, link, height, width }) {
   const classes = useStyles();
 
   return (
@@ -26,8 +26,8 @@ export default function CardWrapper({ lista, link }) {
                   <SerieCard
                     key={result.id}
                     result={result}
-                    width={400}
-                    height={545}
+                    width={width}
+                    height={height}
                   />
                 </Link>
               </div>
@@ -40,8 +40,8 @@ export default function CardWrapper({ lista, link }) {
                   <PessoaCard
                     key={result.id}
                     result={result}
-                    width={400}
-                    height={545}
+                    width={width}
+                    height={height - 55}
                   />
                 </Link>
               </div>
@@ -54,8 +54,8 @@ export default function CardWrapper({ lista, link }) {
                   <FilmesCard
                     key={result.id}
                     result={result}
-                    width={400}
-                    height={545}
+                    width={width}
+                    height={height}
                   />
                 </Link>
               </div>

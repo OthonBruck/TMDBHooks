@@ -17,7 +17,12 @@ export default function PesquisaPage() {
         <Loading />
       ) : pesquisa && pesquisa.length !== 0 ? (
         <div>
-          <CardWrapper lista={pesquisa} link={"/pesquisa"} />
+          <CardWrapper
+            lista={pesquisa}
+            link={"/pesquisa"}
+            height={545}
+            width={350}
+          />
           <Pagination />
         </div>
       ) : pesquisa && pesquisa.length === 0 ? (

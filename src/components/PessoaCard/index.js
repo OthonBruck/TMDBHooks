@@ -16,7 +16,7 @@ export default function PessoaCard({ result, height, width }) {
           <CardContent>
             <Typography>Pessoa</Typography>
             <Grid item xs={12} className={classes.gridItem}>
-              <Typography variant="h5" component="h2">
+              <Typography variant="h5" component="h2" className={classes.title}>
                 {result.name}
               </Typography>
             </Grid>

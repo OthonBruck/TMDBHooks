@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   title: {
-    fontSize: 14,
+    fontSize: 21,
   },
   pos: {
     marginBottom: 12,

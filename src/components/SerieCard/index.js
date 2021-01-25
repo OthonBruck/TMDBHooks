@@ -14,7 +14,7 @@ export default function SerieCard({ result, height, width }) {
         <CardContent>
           <Typography>Serie</Typography>
           <Grid item xs={12} className={classes.gridItem}>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h5" component="h2" className={classes.title}>
               {result.name}
             </Typography>
           </Grid>
