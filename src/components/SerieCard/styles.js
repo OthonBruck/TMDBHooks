@@ -23,8 +23,4 @@ export const useStyles = makeStyles(() => ({
   gridItem: {
     marginTop: 3,
   },
-  media: {
-    width: "250px",
-    height: "365px",
-  },
 }));

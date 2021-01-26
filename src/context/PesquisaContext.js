@@ -55,9 +55,7 @@ export default function PesquisaContextProvider({ children }) {
   }, [tipo, page, query]);
 
   function movie(page, query) {
-    console.log(page);
     const queryParams = new URLSearchParams({ page, query }).toString();
-    console.log(queryParams);
     return api.get(endpoints.searchMovie(queryParams));
   }
   function person(page, query) {
@@ -106,7 +104,6 @@ export default function PesquisaContextProvider({ children }) {
         handleChange,
         page,
         setPage,
-        query,
       }}
     >
       {children}
@@ -122,7 +119,6 @@ export function usePesquisaContext() {
     loading,
     page,
     setPage,
-    query,
     selectedValue,
     handleChange,
   } = useContext(PesquisaContext);
@@ -134,7 +130,6 @@ export function usePesquisaContext() {
     loading,
     page,
     setPage,
-    query,
     selectedValue,
     handleChange,
   };
