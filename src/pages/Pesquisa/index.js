@@ -20,7 +20,7 @@ export default function PesquisaPage() {
           <CardWrapper
             lista={pesquisa}
             link={"/pesquisa"}
-            height={545}
+            height={523}
             width={350}
           />
           <Pagination />

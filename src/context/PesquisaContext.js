@@ -8,7 +8,6 @@ const initialState = [];
 
 export default function PesquisaContextProvider({ children }) {
   const [pesquisa, setPesquisa] = useState(null);
-  const [dado, setDado] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState(initialState);
@@ -90,13 +89,11 @@ export default function PesquisaContextProvider({ children }) {
       value={{
         listarPesquisa,
         pesquisa,
-        dado,
         loading,
         selectedValue,
         handleChange,
         page,
         setPage,
-        setDado,
       }}
     >
       {children}
@@ -108,24 +105,20 @@ export function usePesquisaContext() {
   const {
     listarPesquisa,
     pesquisa,
-    dado,
     loading,
     page,
     setPage,
     selectedValue,
     handleChange,
-    setDado,
   } = useContext(PesquisaContext);
 
   return {
     listarPesquisa,
     pesquisa,
-    dado,
     loading,
     page,
     setPage,
     selectedValue,
     handleChange,
-    setDado,
   };
 }

@@ -3,8 +3,9 @@ const apitotal = "?api_key=" + apikey + "&language=pt-BR";
 
 export const endpoints = {
   API_URL: "https://api.themoviedb.org/3/",
-  trendingDay: "trending/all/day?api_key=" + apikey,
-  trendingWeek: "trending/all/week?api_key=" + apikey,
+  trendingTV: "trending/tv/day?api_key=" + apikey,
+  trendingMovie: "trending/movie/day?api_key=" + apikey,
+  trendingPerson: "trending/person/day?api_key=" + apikey,
   apiTotal: apitotal,
   image: "https://image.tmdb.org/t/p/original",
   movie: "https://api.themoviedb.org/3/movie/",

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
+import { Link } from "react-router-dom";
 import Menu from "../../components/Menu/index";
-import { usePesquisaContext } from "../../context/PesquisaContext";
 import api from "../../services/api";
 import { endpoints } from "../../services/endpoints";
 import CardWrapper from "./../../components/CardWrapper/index";
+import { useStyles } from "./styles";
 
 const responsive = {
   desktop: {
@@ -15,28 +16,34 @@ const responsive = {
 };
 
 export default function Trending() {
-  const { dado, setDado } = usePesquisaContext();
-  const [week, setWeek] = useState([]);
+  const [movie, setMovie] = useState([]);
+  const [tv, setTV] = useState([]);
+  const [person, setPerson] = useState([]);
+
+  const classes = useStyles();
 
   useEffect(() => {
-    const fetchDay = async () => {
-      const response = await api.get(endpoints.trendingDay);
-      setDado(response.data.results);
+    const fetchMovie = async () => {
+      const response = await api.get(endpoints.trendingMovie);
+      setMovie(response.data.results);
     };
-    const fetchWeek = async () => {
-      const response = await api.get(endpoints.trendingDay);
-      setWeek(response.data.results);
+    const fetchTV = async () => {
+      const response = await api.get(endpoints.trendingTV);
+      setTV(response.data.results);
     };
-    fetchWeek();
-    fetchDay();
-  }, [setDado]);
-
-  console.log(dado);
+    const fetchPerson = async () => {
+      const response = await api.get(endpoints.trendingPerson);
+      setPerson(response.data.results);
+    };
+    fetchTV();
+    fetchMovie();
+    fetchPerson();
+  }, [setMovie, setTV, setPerson]);
 
   return (
     <div>
       <Menu />
-      <p>Em alta na Semana</p>
+      <p>Filmes em alta no Dia</p>
       <Carousel
         ssr
         partialVisbile
@@ -44,20 +51,30 @@ export default function Trending() {
         itemClass="image-item"
         responsive={responsive}
       >
-        {dado.map((image) => {
+        {movie.map((image) => {
           return (
-            <img
-              key={image.id}
-              draggable={false}
-              style={{ width: "100%", height: "100%", margin: 3 }}
-              src={endpoints.image + image.backdrop_path}
-              alt={image.title}
-            />
+            <Link draggable={false} to={`/filme/${image.id}`}>
+              <img
+                className={classes.img}
+                key={image.id}
+                draggable={false}
+                style={{ width: "100%", height: "100%", margin: 3 }}
+                src={endpoints.image + image.backdrop_path}
+                alt={image.title}
+              />
+            </Link>
           );
         })}
       </Carousel>
-      <p>Em alta no Dia</p>
-      <CardWrapper lista={week} link={""} height={505} width={350} />
+      <p>Series em alta no Dia</p>
+      <CardWrapper lista={tv.slice(0, 10)} link={""} height={505} width={350} />
+      <p>Pessoa em alta no Dia</p>
+      <CardWrapper
+        lista={person.slice(0, 5)}
+        link={""}
+        height={505}
+        width={350}
+      />
     </div>
   );
 }

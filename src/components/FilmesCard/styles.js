@@ -5,8 +5,9 @@ export const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     background: "#424242",
     color: "white",
+    transition: "transform 0.10s ease-in-out",
     "&:hover": {
-      opacity: 0.9,
+      transform: "scale3d(1.05, 1.05, 1)",
     },
   },
   title: {

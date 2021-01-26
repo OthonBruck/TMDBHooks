@@ -34,7 +34,7 @@ export default function FilmeDetalhe({ match, link }) {
           <ButtonReturn link={link} />
         </Grid>
         <Grid item xs={12}>
-          <Typography component="h1">{dado.title}</Typography>
+          <h1>{dado.name}</h1>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
           <ImageDetalhe image={dado.poster_path} height="550px" />
