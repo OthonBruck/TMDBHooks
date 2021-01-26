@@ -1,9 +1,10 @@
-import React from "react";
-import { usePesquisaContext } from "../../context/PesquisaContext";
-import CardWrapper from "./../../components/CardWrapper/index";
-import Menu from "../../components/Menu/index";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
+import Menu from "../../components/Menu/index";
+import { usePesquisaContext } from "../../context/PesquisaContext";
+import api from "../../services/api";
 import { endpoints } from "../../services/endpoints";
+import CardWrapper from "./../../components/CardWrapper/index";
 
 const responsive = {
   desktop: {
@@ -11,23 +12,31 @@ const responsive = {
     items: 3,
     paritialVisibilityGutter: 60,
   },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    paritialVisibilityGutter: 50,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-    paritialVisibilityGutter: 30,
-  },
 };
 
 export default function Trending() {
-  const { dado } = usePesquisaContext();
+  const { dado, setDado } = usePesquisaContext();
+  const [week, setWeek] = useState([]);
+
+  useEffect(() => {
+    const fetchDay = async () => {
+      const response = await api.get(endpoints.trendingDay);
+      setDado(response.data.results);
+    };
+    const fetchWeek = async () => {
+      const response = await api.get(endpoints.trendingDay);
+      setWeek(response.data.results);
+    };
+    fetchWeek();
+    fetchDay();
+  }, [setDado]);
+
+  console.log(dado);
+
   return (
     <div>
       <Menu />
+      <p>Em alta na Semana</p>
       <Carousel
         ssr
         partialVisbile
@@ -36,9 +45,9 @@ export default function Trending() {
         responsive={responsive}
       >
         {dado.map((image) => {
-          console.log(image);
           return (
             <img
+              key={image.id}
               draggable={false}
               style={{ width: "100%", height: "100%", margin: 3 }}
               src={endpoints.image + image.backdrop_path}
@@ -47,7 +56,8 @@ export default function Trending() {
           );
         })}
       </Carousel>
-      <CardWrapper lista={dado} link={""} height={505} width={350} />
+      <p>Em alta no Dia</p>
+      <CardWrapper lista={week} link={""} height={505} width={350} />
     </div>
   );
 }

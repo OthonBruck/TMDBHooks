@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
+import CardWrapper from "../../components/CardWrapper/index";
+import ErrorComponent from "../../components/Error/ErrorComponent/index";
+import Loading from "../../components/Loading/index";
 import Menu from "../../components/Menu/index";
+import Pagination from "../../components/Pagination/index";
 import Pesquisa from "../../components/Pesquisa/index";
 import { usePesquisaContext } from "../../context/PesquisaContext";
-import CardWrapper from "../../components/CardWrapper/index";
-import Loading from "../../components/Loading/index";
-import ErrorComponent from "../../components/Error/ErrorComponent/index";
-import Pagination from "../../components/Pagination/index";
 
 export default function PesquisaPage() {
   const { pesquisa, loading } = usePesquisaContext();

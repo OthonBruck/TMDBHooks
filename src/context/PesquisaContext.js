@@ -20,14 +20,6 @@ export default function PesquisaContextProvider({ children }) {
   };
 
   useEffect(() => {
-    const fetchItem = async () => {
-      const response = await api.get(endpoints.trendingAll);
-      setDado(response.data.results);
-    };
-    fetchItem();
-  }, []);
-
-  useEffect(() => {
     async function moviePage() {
       const response = await movie(page, query);
       setPesquisa(response.data.results);
@@ -104,6 +96,7 @@ export default function PesquisaContextProvider({ children }) {
         handleChange,
         page,
         setPage,
+        setDado,
       }}
     >
       {children}
@@ -121,6 +114,7 @@ export function usePesquisaContext() {
     setPage,
     selectedValue,
     handleChange,
+    setDado,
   } = useContext(PesquisaContext);
 
   return {
@@ -132,5 +126,6 @@ export function usePesquisaContext() {
     setPage,
     selectedValue,
     handleChange,
+    setDado,
   };
 }
