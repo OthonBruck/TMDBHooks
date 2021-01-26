@@ -6,6 +6,7 @@ import { useStyles } from "./styles";
 export default function Pagination() {
   const { page, setPage } = usePesquisaContext();
   const classes = useStyles();
+  console.log(page);
   return (
     <div className={classes.buttons}>
       <Button variant="contained" onClick={() => setPage(page - 1)}>

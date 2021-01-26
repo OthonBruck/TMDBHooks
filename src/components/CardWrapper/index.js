@@ -41,7 +41,7 @@ export default function CardWrapper({ lista, link, height, width }) {
                     key={result.id}
                     result={result}
                     width={width}
-                    height={height - 55}
+                    height={height}
                   />
                 </Link>
               </div>

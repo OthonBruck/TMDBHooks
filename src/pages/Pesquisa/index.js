@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import Menu from "../../components/Menu/index";
 import Pesquisa from "../../components/Pesquisa/index";
 import { usePesquisaContext } from "../../context/PesquisaContext";

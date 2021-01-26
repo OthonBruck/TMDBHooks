@@ -28,53 +28,67 @@ export default function PesquisaContextProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    async function movies() {
-      const response = await api.get(
-        endpoints.search +
-          tipo +
-          "/" +
-          endpoints.apiTotal +
-          "&query=" +
-          query +
-          "&page=" +
-          page
-      );
+    async function moviePage() {
+      const response = await movie(page, query);
+      setPesquisa(response.data.results);
+    }
+    async function personPage() {
+      const response = await person(page, query);
+      setPesquisa(response.data.results);
+    }
+    async function tvPage() {
+      const response = await tv(page, query);
       setPesquisa(response.data.results);
     }
     setLoading(true);
-    movies();
+    if (tipo === "movie") {
+      moviePage();
+    } else if (tipo === "tv") {
+      tvPage();
+    } else if (tipo === "person") {
+      personPage();
+    }
     setTimeout(() => {
       setLoading(false);
     }, 2000);
     return () => {};
   }, [tipo, page, query]);
 
+  function movie(page, query) {
+    console.log(page);
+    const queryParams = new URLSearchParams({ page, query }).toString();
+    console.log(queryParams);
+    return api.get(endpoints.searchMovie(queryParams));
+  }
+  function person(page, query) {
+    const queryParams = new URLSearchParams({ page, query }).toString();
+    return api.get(endpoints.searchPerson(queryParams));
+  }
+  function tv(page, query) {
+    const queryParams = new URLSearchParams({ page, query }).toString();
+    return api.get(endpoints.searchTV(queryParams));
+  }
+
+  function setar(pesquisar, tipo, query) {
+    setPesquisa(pesquisar);
+    setPage(1);
+    setTipo(tipo);
+    setQuery(query);
+  }
+
   async function listarPesquisa(dado) {
     setLoading(true);
     try {
-      const response = await api.get(
-        endpoints.search +
-          dado.tipo +
-          "/" +
-          endpoints.apiTotal +
-          "&query=" +
-          dado.pesquisa +
-          "&page=" +
-          page
-      );
-      console.log(
-        endpoints.API_URL +
-          dado.tipo +
-          "/" +
-          endpoints.API_URL +
-          dado.pesquisa +
-          "&page=" +
-          page
-      );
-      setPage(1);
-      setQuery(dado.pesquisa);
-      setTipo(dado.tipo);
-      setPesquisa(response.data.results);
+      if (dado.tipo === "movie") {
+        const response = await movie(1, dado.pesquisa);
+        setar(response.data.results, dado.tipo, dado.pesquisa);
+      } else if (dado.tipo === "tv") {
+        const response = await tv(1, dado.pesquisa);
+        setar(response.data.results, dado.tipo, dado.pesquisa);
+      } else if (dado.tipo === "person") {
+        const response = await person(1, dado.pesquisa);
+        setar(response.data.results, dado.tipo, dado.pesquisa);
+      }
     } catch (err) {}
     setTimeout(() => {
       setLoading(false);
@@ -88,11 +102,11 @@ export default function PesquisaContextProvider({ children }) {
         pesquisa,
         dado,
         loading,
+        selectedValue,
+        handleChange,
         page,
         setPage,
         query,
-        selectedValue,
-        handleChange,
       }}
     >
       {children}
