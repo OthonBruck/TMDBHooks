@@ -12,7 +12,7 @@ export default function Favoritos() {
       <CardWrapper
         lista={favoritos}
         link={"/favoritos"}
-        height={545}
+        height={525}
         width={350}
       />
     </div>

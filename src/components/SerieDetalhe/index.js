@@ -8,6 +8,7 @@ import DataDetalhe from "../DataDetalhe";
 import DescricaoDetalhe from "../DescricaoDetalhe";
 import GenresDetalhe from "../GenresDetalhe";
 import ImageDetalhe from "../ImageDetalhe";
+import ModalVideo from "../ModalVideo";
 import TemporadaCard from "../TemporadaCard/index";
 import { useStyles } from "./styles";
 
@@ -38,8 +39,11 @@ export default function SerieDetalhe({ match, link }) {
           <Grid item xs={12} className={classes.gridItem}>
             <ImageDetalhe image={dado.poster_path} height="550px" />
           </Grid>
-          <Grid item xs={12} className={classes.gridItem}>
+          <Grid item xs={6} className={classes.gridItem}>
             <GenresDetalhe dado={dado.genres} />
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <ModalVideo results={dado} title={dado.name} />
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             <DataDetalhe

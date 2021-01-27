@@ -11,7 +11,7 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3,
-    paritialVisibilityGutter: 60,
+    partialVisibilityGutter: 60,
   },
 };
 
@@ -46,17 +46,16 @@ export default function Trending() {
       <p>Filmes em alta no Dia</p>
       <Carousel
         ssr
-        partialVisbile
+        partialVisible
         deviceType={"desktop"}
         itemClass="image-item"
         responsive={responsive}
       >
         {movie.map((image) => {
           return (
-            <Link draggable={false} to={`/filme/${image.id}`}>
+            <Link draggable={false} to={`/filme/${image.id}`} key={image.id}>
               <img
                 className={classes.img}
-                key={image.id}
                 draggable={false}
                 style={{ width: "100%", height: "100%", margin: 3 }}
                 src={endpoints.image + image.backdrop_path}

@@ -1,4 +1,3 @@
-import { Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect, useState } from "react";
 import ButtonReturn from "../../components/ButtonReturn/index";
@@ -9,6 +8,7 @@ import DataDetalhe from "../DataDetalhe";
 import DescricaoDetalhe from "../DescricaoDetalhe";
 import GenresDetalhe from "../GenresDetalhe";
 import ImageDetalhe from "../ImageDetalhe";
+import ModalVideo from "../ModalVideo";
 import { useStyles } from "./styles";
 
 export default function FilmeDetalhe({ match, link }) {
@@ -34,13 +34,16 @@ export default function FilmeDetalhe({ match, link }) {
           <ButtonReturn link={link} />
         </Grid>
         <Grid item xs={12}>
-          <h1>{dado.name}</h1>
+          <h1>{dado.title}</h1>
         </Grid>
         <Grid item xs={12} className={classes.gridItem} justify="center">
           <ImageDetalhe image={dado.poster_path} height="550px" />
         </Grid>
-        <Grid item xs={12} className={classes.gridItem}>
+        <Grid item xs={6} className={classes.gridItem}>
           <GenresDetalhe dado={dado.genres} />
+        </Grid>
+        <Grid item xs={6} className={classes.gridItem}>
+          <ModalVideo results={dado} title={dado.title} />
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
           <DataDetalhe dado={dado.release_date} text={"Data de Lançamento"} />
