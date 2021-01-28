@@ -15,9 +15,7 @@ export default function PessoaDetalhe({ match, link }) {
 
   useEffect(() => {
     const fetchItem = async () => {
-      const response = await api.get(
-        endpoints.person + match.params.id + endpoints.apiTotal
-      );
+      const response = await api.get(endpoints.personDetails(match.params.id));
       setDado(response.data);
     };
     fetchItem();
@@ -27,12 +25,12 @@ export default function PessoaDetalhe({ match, link }) {
     <div className={classes.container}>
       <Grid container spacing={0} className={classes.gridContainer}>
         <Grid item xs={12}>
-          <ButtonReturn link={link} />
+          <ButtonReturn />
         </Grid>
         <Grid item xs={12}>
           <h1>{dado.name}</h1>
         </Grid>
-        <Grid item xs={12} className={classes.gridItem} justify="center">
+        <Grid item xs={12} className={classes.gridItem}>
           <ImageDetalhe image={dado.profile_path} height="500px" />
         </Grid>
         <Grid item xs={12} className={classes.gridItem}>
@@ -51,7 +49,7 @@ export default function PessoaDetalhe({ match, link }) {
         <Grid item xs={12} className={classes.gridItem}>
           <h4>Popularidade: {dado.popularity}</h4>
         </Grid>
-        <Grid item xs={12} className={classes.gridItem} justify="center">
+        <Grid item xs={12} className={classes.gridItem}>
           <ButtonFavorite data={dado} />
         </Grid>
       </Grid>

@@ -6,6 +6,7 @@ import api from "../../services/api";
 import { endpoints } from "../../services/endpoints";
 import CardWrapper from "./../../components/CardWrapper/index";
 import { useStyles } from "./styles";
+import NotFound from "../../assets/images/not.jpg";
 
 const responsive = {
   desktop: {
@@ -54,13 +55,23 @@ export default function Trending() {
         {movie.map((image) => {
           return (
             <Link draggable={false} to={`/filme/${image.id}`} key={image.id}>
-              <img
-                className={classes.img}
-                draggable={false}
-                style={{ width: "100%", height: "100%", margin: 3 }}
-                src={endpoints.image + image.backdrop_path}
-                alt={image.title}
-              />
+              {image.backdrop_path !== null ? (
+                <img
+                  className={classes.img}
+                  draggable={false}
+                  style={{ width: "100%", height: "100%", margin: 3 }}
+                  src={endpoints.image + image.backdrop_path}
+                  alt={image.title}
+                />
+              ) : (
+                <img
+                  className={classes.img}
+                  draggable={false}
+                  style={{ width: 574, height: 332.875, margin: 3 }}
+                  src={NotFound}
+                  alt={image.title}
+                />
+              )}
             </Link>
           );
         })}

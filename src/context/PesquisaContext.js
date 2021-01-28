@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import api from "../services/api";
-import { endpoints } from "../services/endpoints";
+import React, { createContext, useContext, useState } from "react";
+import { movie, person, tv } from "../pages/Pesquisa/services/get-data";
 
 const PesquisaContext = createContext();
 
@@ -18,48 +17,8 @@ export default function PesquisaContextProvider({ children }) {
     setSelectedValue(event.target.value);
   };
 
-  useEffect(() => {
-    async function moviePage() {
-      const response = await movie(page, query);
-      setPesquisa(response.data.results);
-    }
-    async function personPage() {
-      const response = await person(page, query);
-      setPesquisa(response.data.results);
-    }
-    async function tvPage() {
-      const response = await tv(page, query);
-      setPesquisa(response.data.results);
-    }
-    setLoading(true);
-    if (tipo === "movie") {
-      moviePage();
-    } else if (tipo === "tv") {
-      tvPage();
-    } else if (tipo === "person") {
-      personPage();
-    }
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => {};
-  }, [tipo, page, query]);
-
-  function movie(page, query) {
-    const queryParams = new URLSearchParams({ page, query }).toString();
-    return api.get(endpoints.searchMovie(queryParams));
-  }
-  function person(page, query) {
-    const queryParams = new URLSearchParams({ page, query }).toString();
-    return api.get(endpoints.searchPerson(queryParams));
-  }
-  function tv(page, query) {
-    const queryParams = new URLSearchParams({ page, query }).toString();
-    return api.get(endpoints.searchTV(queryParams));
-  }
-
-  function setar(pesquisar, tipo, query) {
-    setPesquisa(pesquisar);
+  function pagination(pesquisar, tipo, query) {
+    setPesquisa(pesquisar.results);
     setPage(1);
     setTipo(tipo);
     setQuery(query);
@@ -70,13 +29,13 @@ export default function PesquisaContextProvider({ children }) {
     try {
       if (dado.tipo === "movie") {
         const response = await movie(1, dado.pesquisa);
-        setar(response.data.results, dado.tipo, dado.pesquisa);
+        pagination(response.data, dado.tipo, dado.pesquisa);
       } else if (dado.tipo === "tv") {
         const response = await tv(1, dado.pesquisa);
-        setar(response.data.results, dado.tipo, dado.pesquisa);
+        pagination(response.data, dado.tipo, dado.pesquisa);
       } else if (dado.tipo === "person") {
         const response = await person(1, dado.pesquisa);
-        setar(response.data.results, dado.tipo, dado.pesquisa);
+        pagination(response.data, dado.tipo, dado.pesquisa);
       }
     } catch (err) {}
     setTimeout(() => {
@@ -94,6 +53,10 @@ export default function PesquisaContextProvider({ children }) {
         handleChange,
         page,
         setPage,
+        setLoading,
+        query,
+        tipo,
+        setPesquisa,
       }}
     >
       {children}
@@ -110,6 +73,10 @@ export function usePesquisaContext() {
     setPage,
     selectedValue,
     handleChange,
+    setLoading,
+    query,
+    tipo,
+    setPesquisa,
   } = useContext(PesquisaContext);
 
   return {
@@ -120,5 +87,9 @@ export function usePesquisaContext() {
     setPage,
     selectedValue,
     handleChange,
+    setLoading,
+    query,
+    tipo,
+    setPesquisa,
   };
 }

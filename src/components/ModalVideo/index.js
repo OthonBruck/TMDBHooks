@@ -43,11 +43,14 @@ export default function ModalVideo({ results, title }) {
 
   return (
     <div>
-      {trailer === undefined ? null : (
-        <Button color="primary" variant="contained" onClick={handleOpen}>
-          Trailer
-        </Button>
-      )}
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={handleOpen}
+        disabled={trailer === undefined}
+      >
+        Trailer
+      </Button>
       <Modal
         className={classes.modal}
         open={open}

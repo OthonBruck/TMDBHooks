@@ -18,9 +18,7 @@ export default function FilmeDetalhe({ match, link }) {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const response = await api.get(
-          endpoints.movie + match.params.id + endpoints.apiTotal
-        );
+        const response = await api.get(endpoints.movieDetails(match.params.id));
         setDado(response.data);
       } catch (error) {}
     };
@@ -31,20 +29,18 @@ export default function FilmeDetalhe({ match, link }) {
     <div className={classes.container}>
       <Grid container spacing={0} className={classes.gridContainer}>
         <Grid item xs={12}>
-          <ButtonReturn link={link} />
+          <ButtonReturn />
         </Grid>
         <Grid item xs={12}>
           <h1>{dado.title}</h1>
         </Grid>
-        <Grid item xs={12} className={classes.gridItem} justify="center">
+        <Grid item xs={12} className={classes.gridItem}>
           <ImageDetalhe image={dado.poster_path} height="550px" />
         </Grid>
-        <Grid item xs={6} className={classes.gridItem}>
+        <Grid item xs={12} className={classes.gridItem}>
           <GenresDetalhe dado={dado.genres} />
         </Grid>
-        <Grid item xs={6} className={classes.gridItem}>
-          <ModalVideo results={dado} title={dado.title} />
-        </Grid>
+
         <Grid item xs={12} className={classes.gridItem}>
           <DataDetalhe dado={dado.release_date} text={"Data de Lançamento"} />
         </Grid>
@@ -54,8 +50,11 @@ export default function FilmeDetalhe({ match, link }) {
         <Grid item xs={12} className={classes.gridItem}>
           <h4>Media de Votos: {dado.vote_average}</h4>
         </Grid>
-        <Grid item xs={12} className={classes.gridItem} justify="center">
+        <Grid item xs={6} className={classes.gridItem}>
           <ButtonFavorite data={dado} />
+        </Grid>
+        <Grid item xs={6} className={classes.gridItem}>
+          <ModalVideo results={dado} title={dado.title} />
         </Grid>
       </Grid>
     </div>

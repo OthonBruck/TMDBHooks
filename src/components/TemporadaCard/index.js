@@ -36,7 +36,6 @@ export default function TemporadaCard({ a }) {
           </Card>
         </Grid>
       </li>
-      );
     </div>
   );
 }
