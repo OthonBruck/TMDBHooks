@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, withTheme } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,5 +44,10 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   checked: {},
+  input: {
+    "& div.MuiInputBase-root": {
+      color: "white",
+    },
+  },
 }));
 export default useStyles;
