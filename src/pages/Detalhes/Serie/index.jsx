@@ -14,11 +14,11 @@ export default function SeriePage({ match }) {
     const fetchCast = async () => {
       const response = await api.get(endpoints.tvCast(match.params.id));
       setCast(response.data.cast);
-    }
+    };
     const fetchSimilar = async () => {
       const response = await api.get(endpoints.tvSimilar(match.params.id));
       setSimilar(response.data.results);
-    }
+    };
     fetchCast();
     fetchSimilar();
   }, [match.params.id]);
@@ -30,13 +30,7 @@ export default function SeriePage({ match }) {
   return (
     <Fragment>
       <Menu />
-      {match.path === "/favoritos/serie/:id" ? (
-        <SerieDetalhe match={match} link={"/favoritos"} />
-      ) : match.path === "/pesquisa/serie/:id" ? (
-        <SerieDetalhe match={match} link={"/pesquisa"} />
-      ) : (
-        <SerieDetalhe match={match} link={"/"} />
-      )}
+      <SerieDetalhe match={match} />
       {cast && cast.length !== 0 && (
         <div>
           <p style={{ fontWeight: "bolder", marginLeft: 10, fontSize: 30 }}>

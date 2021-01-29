@@ -6,15 +6,13 @@ const initialState = [];
 
 export default function FavoritoContextProvider({ children }) {
   const [favoritos, setFavorito] = useState(initialState);
-
-  function adicionarFavorito(favorito) {
+  const adicionarFavorito = (favorito) =>
     setFavorito((prevState) => [favorito, ...prevState]);
-  }
 
-  function removerFavorito(index) {
+  const removerFavorito = (index) => {
     const newFavorito = favoritos.filter((id) => id.id !== index);
     setFavorito(newFavorito);
-  }
+  };
 
   useEffect(() => {
     const dados = JSON.parse(localStorage.getItem("favorito"));

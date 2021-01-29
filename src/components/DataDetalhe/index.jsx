@@ -6,7 +6,6 @@ import Formatters from "../../utils/formatters";
 export default function DataDetalhe({ dado, text }) {
   return (
     <Fragment>
-      {/* TODO: h4 para typography */}
       {dado !== ("" || null) ? (
         <Typography
           variant="body1"

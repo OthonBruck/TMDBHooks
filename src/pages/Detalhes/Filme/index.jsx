@@ -30,13 +30,7 @@ export default function FilmePage({ match }) {
   return (
     <Fragment>
       <Menu />
-      {match.path === "/favoritos/filme/:id" ? (
-        <FilmeDetalhe match={match} link={"/favoritos"} />
-      ) : match.path === "/pesquisa/filme/:id" ? (
-        <FilmeDetalhe match={match} link={"/pesquisa"} />
-      ) : (
-        <FilmeDetalhe match={match} link={"/"} />
-      )}
+        <FilmeDetalhe match={match} />
       {cast && cast.length !== 0 && (
         <div>
           <p style={{ fontWeight: "bolder", marginLeft: 10, fontSize: 30 }}>

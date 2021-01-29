@@ -21,15 +21,15 @@ export default function PesquisaPage() {
   } = usePesquisaContext();
 
   useEffect(() => {
-    async function moviePage() {
+    const moviePage = async () => {
       const response = await movie(page, query);
       setPesquisa(response.data);
     }
-    async function personPage() {
+    const personPage = async () => {
       const response = await person(page, query);
       setPesquisa(response.data);
     }
-    async function tvPage() {
+    const tvPage = async () => {
       const response = await tv(page, query);
       setPesquisa(response.data);
     }
@@ -44,7 +44,6 @@ export default function PesquisaPage() {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-    return () => {};
   }, [tipo, page, query, setLoading, setPesquisa]);
 
   return (

@@ -5,7 +5,6 @@ import { Fragment } from "react";
 export default function DescricaoDetalhe({ dado, text }) {
   return (
 <Fragment>
-      {/* TODO: h4 para typography */}
       {dado !== "" ? (
         <Typography variant="body1" component="h2" gutterBottom style={{marginTop: 8}}>
           {text}: {dado}

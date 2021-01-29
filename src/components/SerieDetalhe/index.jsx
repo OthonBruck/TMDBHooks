@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
@@ -33,7 +34,14 @@ export default function SerieDetalhe({ match }) {
             <ButtonReturn />
           </Grid>
           <Grid item xs={12}>
-            <h1>{dado.name}</h1>
+          <Typography
+            variant="h4"
+            component="h2"
+            style={{ marginTop: 8 }}
+            gutterBottom
+          >
+            {dado.name}
+          </Typography>
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             <ImageDetalhe image={dado.poster_path} height="550px" />
@@ -51,7 +59,14 @@ export default function SerieDetalhe({ match }) {
             <DescricaoDetalhe dado={dado.overview} text={"Descrição"} />
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
-            <h4>Media de Votos: {dado.vote_average}</h4>
+          <Typography
+            variant="body1"
+            component="h2"
+            style={{ marginTop: 8 }}
+            gutterBottom
+          >
+            Media de Votos: {dado.vote_average}
+          </Typography>
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <ButtonFavorite data={dado} />

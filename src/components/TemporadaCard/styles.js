@@ -20,9 +20,9 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
-  root: {
+  card: {
     width: "400px",
-    height: 545,
+    height: 505,
     flexWrap: "wrap",
     background: "#424242",
     margin: "5px",

@@ -12,7 +12,7 @@ export default function TemporadaCard({ a }) {
   return (
       <li>
         <Grid container>
-          <Card className={classes.root} variant="outlined">
+          <Card className={classes.card} variant="outlined">
             <CardContent>
               <Typography>Temporada</Typography>
               <Grid item xs={12} className={classes.gridCard}>

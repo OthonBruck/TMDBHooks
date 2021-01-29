@@ -16,13 +16,13 @@ export default function PessoaPage({ match }) {
         endpoints.personMoviesCredits(match.params.id)
       );
       setMovieCredits(response.data.cast);
-    }
+    };
     const fetchTvCredits = async () => {
       const response = await api.get(
         endpoints.personTvsCredits(match.params.id)
       );
       setTvCredits(response.data.cast);
-    }
+    };
     fetchMovieCredits();
     fetchTvCredits();
   }, [match.params.id]);
@@ -30,17 +30,11 @@ export default function PessoaPage({ match }) {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
-  
+
   return (
     <Fragment>
       <Menu />
-      {match.path === "/favoritos/pessoa/:id" ? (
-        <PessoaDetalhe match={match} link={"/favoritos"} />
-      ) : match.path === "/pesquisa/pessoa/:id" ? (
-        <PessoaDetalhe match={match} link={"/pesquisa"} />
-      ) : (
-        <PessoaDetalhe match={match} link={"/"} />
-      )}
+      <PessoaDetalhe match={match} />
 
       {movieCredits && movieCredits.length !== 0 && (
         <div>

@@ -10,7 +10,7 @@ import DescricaoDetalhe from "../DescricaoDetalhe";
 import ImageDetalhe from "../ImageDetalhe";
 import { useStyles } from "./styles";
 
-export default function PessoaDetalhe({ match, link }) {
+export default function PessoaDetalhe({ match }) {
   const classes = useStyles();
   const [dado, setDado] = useState({});
 
