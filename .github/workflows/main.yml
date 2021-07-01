@@ -8,11 +8,9 @@ jobs:
   sonarqube:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+    - uses: actions/checkout@master
     - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
+      uses: kitabisa/sonarqube-action@v1.1.0
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        host: ${{ secrets.SONAR_HOST_URL }}
+        login: ${{ secrets.SONAR_TOKEN }}
