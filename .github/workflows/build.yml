@@ -4,7 +4,27 @@ on:
   push:
     branches:
       - master
+  pull-request:
+    branches:
+    - master
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install dependencies
+        run: npm install    
+      # - name: Test
+      #   run: npm test
+      #   env:
+      #     CI: true
+      - name: Generate build
+        run: npm run build
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
@@ -23,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: tmdbhooks
