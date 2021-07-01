@@ -33,7 +33,7 @@ export default function Menu() {
               to="/"
               className={classes.link}
             >
-              Trending
+              TrendinG
             </Link>
             <Link
               variant="button"
